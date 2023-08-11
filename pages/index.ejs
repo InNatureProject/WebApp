@@ -35,9 +35,10 @@
             </svg> <p class="fts-4 my-auto">Mais Pesquisados</p></div>
             <div class="carousel slide carousel-fade" data-bs-ride="carousel" id="ads">
                 <div class="carousel-inner" id="img_maisPesquisado">
-                    <div class="carousel-item active" data-bs-interval="2000"><img src="https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg"></div>
-                    <div class="carousel-item " data-bs-interval="2000"><img src="https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg"></div>
-                    <div class="carousel-item " data-bs-interval="2000"><img src="https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg"></div>
+                    <div class="carousel-item active" data-bs-interval="2000"><img src=<%= imgs[0] %>></div>
+                    <% for (var i = 1; i < imgs.length; i++) { %>
+                    <div class="carousel-item" data-bs-interval="2000"><img src=<%= imgs[i] %>></div>
+                    <% } %>
                 </div>
             </div>
         </div>
