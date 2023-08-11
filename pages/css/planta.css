@@ -1,0 +1,26 @@
+#imagem {
+    width: 10rem;
+}
+
+.accordion-cabecalho {
+    background-color: #f0eeee !important;
+    border-radius: 10px;
+}
+
+.accordion-cabecalho:hover {
+    filter: brightness(0.9) !important;
+}
+
+.accordion-cabecalho[children="hide"] {
+    border-radius: 10px;
+}
+
+.accordion-cabecalho[children="show"] {
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+.accordion-conteudo {
+    background-color: #F8F8F8 !important;
+    border-radius: 0px 0px 10px 10px;
+}

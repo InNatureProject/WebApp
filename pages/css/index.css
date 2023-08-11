@@ -1,0 +1,35 @@
+.maisPesquisados-title {
+    background-color: transparent;
+    height: fit-content;
+}
+
+#maisPesquisados {
+    background-color: #F8F8F8;
+    font-size: 1.8rem;
+    border-radius: 10px;
+}
+
+#img_maisPesquisado{
+    height: min-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+}
+
+
+#img_maisPesquisado div {
+    height: 25%;
+    width: min-content;
+    padding: 4px;
+    justify-content: start;
+    margin: 4px;
+
+}
+
+#img_maisPesquisado div img{
+    width: 15rem;
+    border-radius: 50px;
+}
+

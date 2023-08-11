@@ -1,0 +1,93 @@
+* {
+    --cor-primaria:         #b6ce8a;
+    --cor-secundaria:       #c5d6a1;
+    --cor-detalhe:          #BDFFCA;
+    --cor-terciario:        #8EE687;
+    --cor-quartenario:      #FAF989;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* border: 10px solid black; */
+}
+
+.cor-primaria {
+    color: #3c9135;
+}
+
+.bg-primaria {
+    background-color: var(--cor-primaria);
+}
+
+.bg-secundaria {
+    background-color: var(--cor-secundaria);
+}
+
+.bg-detalhe {
+    background-color: var(--cor-detalhe);
+}
+
+ul.modal-ul li {
+    background-color: transparent;
+    border: none;
+}
+
+#fotoPerfil {
+    height: 2.8rem;
+}
+
+.navbar-container {
+    box-shadow: 0 1px 7px rgba(0,0,0,0.188);
+}
+
+.modal-header {
+    box-shadow: 0 1px 7px rgba(0,0,0,0.188) !important;
+}
+
+.modal-footer {
+    
+}
+
+.tamanhoLogo {
+    height: 3.5rem;
+}
+
+.sidenav {
+    width: fit-content;
+}
+
+.option {
+    width: 2rem;
+}
+
+#modalId .modal-content{
+    animation-fill-mode: forwards;
+    animation-duration: 100ms;
+}
+
+
+
+.bi-search {
+    height: 1.2rem;
+}
+
+
+input[type="search"]:focus {
+    box-shadow: none;
+}
+
+footer div ul li {
+    background-color: transparent;
+}
+
+footer {
+    width: 100%;
+    background-color: #b6ce8a;
+}
+
+footer .icon {
+    height: 1.2rem;
+}

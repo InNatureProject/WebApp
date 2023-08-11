@@ -1,0 +1,21 @@
+#plantas{
+    height: min-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+#plantas div {
+    height: min-content;
+    width: min-content;
+    padding: 4px;
+    justify-content: start;
+    margin: 4px;
+}
+
+#plantas div img{
+    width: 15rem;
+    border-radius: 50px;
+}
