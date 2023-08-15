@@ -26,8 +26,8 @@ app.get("/index", (req, res) => {
 
 app.get("/plantas", async (req, res) => {
         let j = await db.getAllPlantas(50);
-        console.log(j);
-        res.send(j);
+        // console.log(j);
+        res.render("plantas", {plantas:j});
     })
 
 app.get("/cadastro-usuario", (req, res) => {

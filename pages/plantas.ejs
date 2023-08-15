@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/cssGeral.css">
     <link rel="stylesheet" href="css/plantas.css">
     <!-- <script src="js/geralJs.js" defer></script> -->
-    <script src="js/plantas.js" defer></script>
+    <!-- <script src="js/plantas.js" defer></script> -->
     <title>Plantas</title>
 </head>
 <body>
@@ -20,7 +20,17 @@
             <p class="fs-1 me-auto">Plantas</p>
         </div>
         <div class="container p-2">
-            <div class="container rounded-5 bg-light" id="plantas"></div>
+            <div class="container rounded-5 bg-light" id="plantas">
+                <% for (var i = 0; i < plantas.length; i++) { %>
+                    <div>
+                        <a href=<%= "planta/" + plantas[i]["cod_plt"] %> class="text-decoration-none text-black">
+                        <img src=<%= plantas[i]["imagem"]; %> href=<%= "planta/" + plantas[i]["cod_plt"] %>>
+                        <p class="text-decoration-none"><%= plantas[i]["nome"] %></p>
+                    </a>
+                    </div>
+
+                    <% } %>
+            </div>
         </div>
     </main>
 
