@@ -42,6 +42,11 @@ app.get("/login", (req, res) => {
     res.render("login");
 })
 
+app.get("/planta/:id", (req, res) => {
+    let j = db.getPlanta(req.params.id);
+    res.render("planta", {planta: j});
+})
+
 app.listen(port = 3000, () => {
 
 })

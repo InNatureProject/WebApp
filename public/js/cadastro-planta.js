@@ -1,12 +1,14 @@
 
 // formulário
 const form = document.querySelector(".form");
+const submit = document.getElementById("submit");
 
 
 // campos
 const nome = document.getElementById("cd_nome");
 const nome_cientifico = document.getElementById("cd_nome_cientifico");
-const utilizacao = document.getElementById("utilizacao");
+const beneficios = document.getElementById("beneficios");
+const maleficios = document.getElementById("maleficios");
 
 // checklist
 const cha = document.getElementById("cha");
@@ -22,6 +24,7 @@ const alerta3 = document.getElementById("alerta3");
 const alerta4 = document.getElementById("alerta4");
 const alerta5 = document.getElementById("alerta5");
 const alerta6 = document.getElementById("alerta6");
+const alerta7 = document.getElementById("alerta7");
 
 // Funções auxiliares
 
@@ -31,12 +34,13 @@ function letrasEspacos(str){
 
 // Validando conteúdo dos formulários
 
-form.addEventListener("submit", (e) => {
-
+submit.addEventListener("click", (e) => {
+    let certo = true;
     // Campos preenchidos
     if(nome.value == 0){
         alerta1.style.display = "flex";
         e.preventDefault();
+        let certo = false;
     }else{
         alerta1.style.display = "none";      
     }
@@ -44,14 +48,24 @@ form.addEventListener("submit", (e) => {
     if(nome_cientifico.value == 0){
         alerta2.style.display = "flex";
         e.preventDefault();
+        let certo = false;
     }else{
         alerta2.style.display = "none";      
     }
-    if(utilizacao.value == 0){
+    if(beneficios.value == 0){
         alerta3.style.display = "flex";
         e.preventDefault();
+        let certo = false;
     }else{
         alerta3.style.display = "none";      
+    }
+
+    if(maleficios.value == 0){
+        alerta7.style.display = "flex";
+        e.preventDefault();
+        let certo = false;
+    }else{
+        alerta7.style.display = "none";      
     }
 
 
@@ -60,6 +74,7 @@ form.addEventListener("submit", (e) => {
     if((cha.checked == false) && (banho.checked == false) && (compressas.checked == false) && (outro.checked == false)){
         alerta4.style.display = "flex";
         e.preventDefault();
+        let certo = false;
     }else{
         alerta4.style.display = "none";      
     }
@@ -68,6 +83,7 @@ form.addEventListener("submit", (e) => {
     if(!letrasEspacos(nome.value)){
         alerta5.style.display = "flex";
         e.preventDefault();
+        let certo = false;
     } else {
         alerta5.style.display = "none";
     }
@@ -75,9 +91,13 @@ form.addEventListener("submit", (e) => {
     if(!letrasEspacos(nome_cientifico.value)){
         alerta6.style.display = "flex";
         e.preventDefault();
+        let certo = false;
     } else {
         alerta6.style.display = "none";
     }
 
-   
+   if (certo) {
+    window.location.href = "cadastro-planta2"
+   }
+
 });

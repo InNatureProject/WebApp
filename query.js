@@ -8,15 +8,6 @@ const pool = new Pool ({
     password: 'lqyCvpH-HZxRVJl1n0y1zSTJEc4IxQXs',
 });
 
-// function getAllPlantas(quant) {
-//     pool.query(`select * from planta limit ${quant}`, [], (error, results) => {
-//         if (error) {
-//             throw(error);
-//         }
-//        return (results.rows)
-//     });
-// };
-
 const getAllPlantas = (quant) => {
   return new Promise((resolve, reject) => {
     pool.query(`select * from planta limit ${quant}`, [], (error, results) => {
@@ -29,4 +20,18 @@ const getAllPlantas = (quant) => {
   });
 };
 
-module.exports = {getAllPlantas};
+const getPlanta = (quant) => {
+  return new Promise((resolve, reject) => {
+    pool.query(`select * from planta where cod_plt = 0${quant}`, [], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(results.rows);
+      }
+    });
+  });
+};
+
+
+
+module.exports = {getAllPlantas, getPlanta};
