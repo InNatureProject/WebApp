@@ -11,9 +11,17 @@ app.set("views", "./pages");
 app.use(cors());
 app.use(express.static(__dirname + "/public"));
 
+const indexAcess = (req, res) => {
+    res.render("index", {imgs:imgs});
+}
+
 //Generate
 app.get("/", (req, res) => {
-    res.render("index", {imgs:imgs});
+    indexAcess(req, res);
+})
+
+app.get("/index", (req, res) => {
+    indexAcess(req, res);
 })
 
 app.get("/plantas", async (req, res) => {
@@ -21,6 +29,18 @@ app.get("/plantas", async (req, res) => {
         console.log(j);
         res.send(j);
     })
+
+app.get("/cadastro-usuario", (req, res) => {
+    res.render("cadastro-usuario");
+})
+
+app.get("/cadastro-planta", (req, res) => {
+    res.render("cadastro-planta");
+})
+
+app.get("/login", (req, res) => {
+    res.render("login");
+})
 
 app.listen(port = 3000, () => {
 
