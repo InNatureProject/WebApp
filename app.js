@@ -50,7 +50,7 @@ app.get("/planta/:id", async (req, res) => {
     let r1 = await parseInt(req.params.id);
     let p1 = await db.getPlanta(r1);
     let pp1 = await db.getPlantaPreparos(r1);
-    console.log(pp1)
+    // console.log(pp1);
     res.render("planta", {planta: p1, preparos: pp1});
 })
 
