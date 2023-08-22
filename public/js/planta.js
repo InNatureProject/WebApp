@@ -1,12 +1,12 @@
 
 
-var planta = null;
-var nome = document.getElementById("nome");
-var imagem = document.getElementById("imagem");
+// var planta = null;
+// var nome = document.getElementById("nome");
+// var imagem = document.getElementById("imagem");
 
 // Checando se local Storage é utilizavel
 
-if (typeof(Storage) !== "undefined") {
+if (false) {
     var planta = parseInt(localStorage.getItem("planta selecionada"));
     fetch(`https://innatureweb.onrender.com/planta/${planta}`)
       .then(response => response.json())
@@ -87,7 +87,7 @@ if (typeof(Storage) !== "undefined") {
       })
       .catch(err => console.log(err));
   } else {
-    alert("O nosso site não funciona corretamente no seu navegador")
+    console.log("O nosso site não funciona corretamente no seu navegador")
   }
 
 
