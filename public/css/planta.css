@@ -10,6 +10,7 @@
 
 .accordion-cabecalho:hover {
     filter: brightness(0.9) !important;
+    cursor: pointer;
 }
 
 .accordion-cabecalho[children="hide"] {

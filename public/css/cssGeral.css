@@ -91,3 +91,7 @@ footer {
 footer .icon {
     height: 1.2rem;
 }
+
+a:hover {
+    cursor: pointer;
+}

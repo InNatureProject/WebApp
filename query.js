@@ -14,8 +14,6 @@ const getAllPlantas = (quant) => {
       if (error) {
         reject(error);
       } else {
-
-        // console.log(results);
         resolve(results.rows);
       }
     });
@@ -23,13 +21,23 @@ const getAllPlantas = (quant) => {
 };
 
 const getPlanta = (id) => {
-  console.log(id);
   return new Promise((resolve, reject) => {
     pool.query(`select * from planta where cod_plt = ${id}`, [], (error, results) => {
       if (error) {
         reject(error);
       } else {
-        // console.log(results);
+        resolve(results.rows);
+      }
+    });
+  });
+};
+
+const searchPlanta = (id) => {
+  return new Promise((resolve, reject) => {
+    pool.query(`select * from planta where nome ilike '%${id}%'`, [], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
         resolve(results.rows);
       }
     });
@@ -37,7 +45,6 @@ const getPlanta = (id) => {
 };
 
 const getPlantaPreparos = (id) => {
-  console.log(id);
   return new Promise((resolve, reject) => {
     pool.query(`SELECT pl.cod_plt, pr.descricao as "receita", array_agg(ind.descricao) as "indicacao", array_agg(cind.descricao) as "contraindicacao", array_agg(efc.descricao) as "efeito colateral" from planta pl 
     inner join planta_preparo pp
@@ -75,4 +82,4 @@ const getPlantaPreparos = (id) => {
 
 
 
-module.exports = {getAllPlantas, getPlanta, getPlantaPreparos};
+module.exports = {getAllPlantas, getPlanta, getPlantaPreparos, searchPlanta};

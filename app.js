@@ -46,13 +46,28 @@ app.get("/plantas", async (req, res) => {
     res.render("plantas", {plantas: j});
 })
 
+app.get("/plantas/:id", async (req, res) => {
+    let r3 = req.params.id.replace("&", " ");
+    let j = await db.searchPlanta(r3);
+
+    res.render("plantas", {plantas: j});
+})
+
 app.get("/planta/:id", async (req, res) => {
     let r1 = await parseInt(req.params.id);
-    let p1 = await db.getPlanta(r1);
-    let pp1 = await db.getPlantaPreparos(r1);
-    // console.log(pp1);
-    res.render("planta", {planta: p1, preparos: pp1});
+    if (isNaN(r1)) {
+        res.render("error", {erro: "Valor inválido"})
+    }
+    else {
+        let p1 = await db.getPlanta(r1);
+        let pp1 = await db.getPlantaPreparos(r1);
+        res.render("planta", {planta: p1, preparos: pp1});
+    }
+    
+    
 })
+
+
 
 app.listen(port = 3000, () => {
 

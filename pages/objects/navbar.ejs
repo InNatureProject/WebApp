@@ -1,3 +1,16 @@
+<script>
+    // const barra_pesquisa = document.querySelector("input.pesquisa");
+    function page(link) {
+        window.location.pathname = link;
+    }
+
+    function pesquisa(e) {
+        if (e.key == "Enter" && e.target.value != "") {
+        window.location.pathname = "plantas/" + e.target.value.replace(" ", "&");
+
+    }
+    }
+</script>
 <header class="mb-4">
 <nav class="navbar d-inline p-0">
     <div class="navbar-container container-fluid p-0 pt-1 border-bottom bg-primaria">
@@ -8,32 +21,32 @@
         </button>
     
         <!-- Logo -->
-        <a href="index" class="navbar-brand">
+        <a onclick="page('index')" class="navbar-brand">
             <img class="tamanhoLogo" src="/img/logo.png" alt="">
         </a>
         
         <!-- Início da Barra de Pesquisa -->
         <div class="container-fluid w-50 justify-content-center">
-            <form class="search" role="search">
+            <div class="search">
                 <div class="w-100 border border-2 rounded-end-pill rounded-start-pill d-flex d-inline-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search my-auto ms-2" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
-                    <input class="form-control border-0 bg-transparent fts-4 w-100 pesquisa" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control border-0 bg-transparent fts-4 w-100 pesquisa" type="search" placeholder="Search" aria-label="Search" onkeypress="pesquisa(event)">
                 </div>
-            </form>
+            </div>
         </div>
         <!-- Fim da Barra de Pesquisa -->
         
         <!-- Início do Ícone Favorito e Foto de Perfil -->
         <div class="ms-auto">
-            <a href="#" class="navbar-brand">
+            <a onclick="page('favoritos')" class="navbar-brand">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill option" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>
             </a>
             
-            <a href="cadastro-usuario" class="navbar-brand" alt="Foto de Perfil" id="usuario">
+            <a onclick="page('cadastro-usuario')" class="navbar-brand" alt="Foto de Perfil" id="usuario">
                 <img id="fotoPerfil" src="/img/foto_padrao.png"  class="img-fluid rounded-circle">
             </a>
         </div>
@@ -61,8 +74,8 @@
         <div class="modal-content">
                 <div class="modal-header border-bottom-0 bg-primaria">
                         <div class="modal-title" id="modalTitleId">
-                            <a href="index" class="navbar-brand ms-2 me-auto">
-                                <img class="tamanhoLogo" src="img/logo.png" alt="">
+                            <a onclick="page('index')" class="navbar-brand ms-2 me-auto">
+                                <img class="tamanhoLogo" src="/img/logo.png" alt="">
                             </a>
                         </div>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -73,7 +86,7 @@
                         <li class="list-group-item d-flex d-inline-flex">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-house img-fluid my-auto option" viewBox="0 0 16 16">
                                 <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
-                            </svg> <a class="fts-5 my-auto mx-2 nav-link" href="index">Início</a>
+                            </svg> <a class="fts-5 my-auto mx-2 nav-link" onclick="page('index')">Início</a>
                             
                         </li>
                         
@@ -82,7 +95,7 @@
     
                                 <g transform="translate(0.000000,1000.000000) scale(0.100000,-0.100000)" stroke="none">
                                     <path d="M8014 9298 c-292 -188 -1134 -679 -1394 -812 -30 -16 -107 -57 -170 -91 -63 -34 -232 -121 -375 -193 -405 -204 -644 -371 -916 -642 -426 -424 -628 -862 -629 -1360 0 -387 132 -771 406 -1180 96 -144 121 -177 127 -170 3 3 59 91 125 195 379 603 882 1183 1399 1613 151 126 303 240 303 229 0 -3 -80 -77 -178 -165 -348 -314 -738 -764 -1023 -1182 -257 -376 -504 -830 -642 -1180 -164 -415 -301 -922 -377 -1392 -7 -43 -16 -78 -20 -78 -4 0 -34 62 -66 137 -212 504 -477 891 -875 1278 -249 243 -469 413 -771 596 -72 43 -126 79 -122 79 16 0 239 -116 346 -180 341 -204 688 -480 904 -717 42 -46 79 -83 83 -83 28 0 141 335 161 475 13 92 13 293 0 374 -13 80 -57 205 -103 296 -100 199 -302 397 -547 537 -185 106 -317 157 -611 233 -339 88 -732 211 -1139 356 -80 28 -154 53 -164 57 -18 5 -18 1 -12 -69 10 -107 64 -463 91 -594 95 -475 197 -802 351 -1124 115 -241 234 -411 397 -568 160 -155 323 -248 525 -300 146 -37 355 -39 507 -5 109 25 263 78 358 123 33 15 64 26 68 23 27 -16 215 -357 284 -514 25 -58 52 -118 59 -135 55 -123 144 -403 193 -610 26 -113 28 -132 27 -334 -1 -237 1 -231 -70 -231 -112 0 -308 -62 -410 -129 -73 -47 -157 -130 -191 -188 -26 -44 -26 -44 -67 -36 -22 4 -93 8 -156 8 -93 -1 -128 -5 -185 -24 -190 -64 -331 -184 -419 -359 -23 -46 -30 -53 -49 -48 -185 55 -351 40 -517 -44 -168 -85 -325 -280 -337 -419 -5 -53 -3 -58 27 -86 l31 -30 2504 0 2503 0 26 24 c33 31 41 75 27 152 -15 86 -59 174 -120 241 -50 55 -145 122 -206 146 -51 20 -158 42 -205 42 -39 0 -49 4 -72 34 -60 76 -186 107 -279 69 l-42 -16 -21 29 c-104 147 -306 292 -515 371 -221 83 -525 106 -677 51 -31 -11 -35 -9 -89 40 -31 27 -83 64 -115 81 l-57 31 -6 97 c-10 147 -8 494 3 703 21 373 94 852 181 1175 76 283 107 386 176 578 l46 129 31 -5 c17 -2 96 -18 176 -35 264 -56 569 -66 823 -27 383 58 771 267 1028 556 358 400 572 915 708 1704 20 113 38 272 62 530 28 305 27 1159 -1 1495 -6 69 -17 213 -26 320 -9 107 -17 196 -18 197 -1 1 -38 -21 -82 -49z"/></g>
-                            </svg> <a class="fts-5 my-auto mx-2 nav-link" href="plantas">Plantas</a>
+                            </svg> <a class="fts-5 my-auto mx-2 nav-link" onclick="page('plantas')">Plantas</a>
                             
                         </li>
     
@@ -112,7 +125,7 @@
         
                                 <g transform="translate(0.000000,1000.000000) scale(0.100000,-0.100000)" stroke="none">
                                     <path d="M8014 9298 c-292 -188 -1134 -679 -1394 -812 -30 -16 -107 -57 -170 -91 -63 -34 -232 -121 -375 -193 -405 -204 -644 -371 -916 -642 -426 -424 -628 -862 -629 -1360 0 -387 132 -771 406 -1180 96 -144 121 -177 127 -170 3 3 59 91 125 195 379 603 882 1183 1399 1613 151 126 303 240 303 229 0 -3 -80 -77 -178 -165 -348 -314 -738 -764 -1023 -1182 -257 -376 -504 -830 -642 -1180 -164 -415 -301 -922 -377 -1392 -7 -43 -16 -78 -20 -78 -4 0 -34 62 -66 137 -212 504 -477 891 -875 1278 -249 243 -469 413 -771 596 -72 43 -126 79 -122 79 16 0 239 -116 346 -180 341 -204 688 -480 904 -717 42 -46 79 -83 83 -83 28 0 141 335 161 475 13 92 13 293 0 374 -13 80 -57 205 -103 296 -100 199 -302 397 -547 537 -185 106 -317 157 -611 233 -339 88 -732 211 -1139 356 -80 28 -154 53 -164 57 -18 5 -18 1 -12 -69 10 -107 64 -463 91 -594 95 -475 197 -802 351 -1124 115 -241 234 -411 397 -568 160 -155 323 -248 525 -300 146 -37 355 -39 507 -5 109 25 263 78 358 123 33 15 64 26 68 23 27 -16 215 -357 284 -514 25 -58 52 -118 59 -135 55 -123 144 -403 193 -610 26 -113 28 -132 27 -334 -1 -237 1 -231 -70 -231 -112 0 -308 -62 -410 -129 -73 -47 -157 -130 -191 -188 -26 -44 -26 -44 -67 -36 -22 4 -93 8 -156 8 -93 -1 -128 -5 -185 -24 -190 -64 -331 -184 -419 -359 -23 -46 -30 -53 -49 -48 -185 55 -351 40 -517 -44 -168 -85 -325 -280 -337 -419 -5 -53 -3 -58 27 -86 l31 -30 2504 0 2503 0 26 24 c33 31 41 75 27 152 -15 86 -59 174 -120 241 -50 55 -145 122 -206 146 -51 20 -158 42 -205 42 -39 0 -49 4 -72 34 -60 76 -186 107 -279 69 l-42 -16 -21 29 c-104 147 -306 292 -515 371 -221 83 -525 106 -677 51 -31 -11 -35 -9 -89 40 -31 27 -83 64 -115 81 l-57 31 -6 97 c-10 147 -8 494 3 703 21 373 94 852 181 1175 76 283 107 386 176 578 l46 129 31 -5 c17 -2 96 -18 176 -35 264 -56 569 -66 823 -27 383 58 771 267 1028 556 358 400 572 915 708 1704 20 113 38 272 62 530 28 305 27 1159 -1 1495 -6 69 -17 213 -26 320 -9 107 -17 196 -18 197 -1 1 -38 -21 -82 -49z"/></g>
-                            </svg> <a class="fts-5 my-auto mx-2 nav-link" href="cadastro-planta">Cadastro Plantas</a>
+                            </svg> <a class="fts-5 my-auto mx-2 nav-link" onclick="page('cadastro-planta')">Cadastro Plantas</a>
                             
                         </li>
     
@@ -120,7 +133,7 @@
                     
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer bg-secundaria border-top-0">
                 
             </div>
         </div>

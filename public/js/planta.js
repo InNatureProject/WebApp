@@ -96,11 +96,11 @@ const cabecalho = document.querySelectorAll(".accordion-cabecalho");
 // funções do accordion
 
 function toggleAccordion(event) {
-  const cabecalho = event.target;
+  const cabecalho = event;
   const conteudo = cabecalho.nextElementSibling;
 
   if (conteudo.style.display === "none" || conteudo.style.display === "") {
-    fechaTodosAccordionContent();
+    // fechaTodosAccordionContent();
     conteudo.style.display = "block";
     cabecalho.setAttribute("children", "show");
   } else {
@@ -111,6 +111,9 @@ function toggleAccordion(event) {
 
 function fechaTodosAccordionContent() {
   const conteudo = document.querySelectorAll(".accordion-conteudo");
+  conteudo.forEach((e) => {
+    e.style.display = "none";
+  })
 }
 
 fechaTodosAccordionContent();
