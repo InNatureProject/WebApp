@@ -1,4 +1,13 @@
 {
+  "name": "innature",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "body-parser": "^1.20.2",
     "boostrap": "^2.0.0",
@@ -6,6 +15,7 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "html": "^1.0.0",
-    "pg": "^8.11.2"
+    "pg": "^8.11.2",
+    "vercel": "^32.1.0"
   }
 }
