@@ -1,7 +1,7 @@
 const express               = require("express");
 const cors                  = require("cors");
 const bodyParser            = require("body-parser");
-const db                    = require("./Controllers/Banco/plantas");
+const db                    = require("./functions/Banco/plantas");
 const app                   = new express();
 
 const imgs = ["https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg", "https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg", "https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg"]
