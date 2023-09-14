@@ -30,14 +30,22 @@
                 </div>
                 <div class="row preparos">
                     
-                    <% for (var i = 0; i < preparos.length; i++) { 
+                    <%
+                    console.log(preparos); 
+                    for (var i = 0; i < preparos.length; i++) { 
                         let indicacoes = "";
                         indicacoes = "Indicacoes:  " + preparos[i]["indicacao"][0];
                         for (let j = 1; j < preparos[i]["indicacao"].length-1; j++) {
                             indicacoes = indicacoes.concat(", " + preparos[i]["indicacao"][j]);
                         }
                         indicacoes = indicacoes.concat(" e " + preparos[i]["indicacao"].slice(-1));
+
+                        let contraindicacoes = "";
+                        for (let j = 1; )
                         
+                        
+                        
+
                         %>
                     <div>
                         <div class="preparo text-justify">
@@ -47,7 +55,7 @@
 
                             <div class="accordion-conteudo fs-4 text-justify" style="display: none">
                                 <p class="fs-6 text-justify"><%= indicacoes %></p>
-                                <p class="fs-6 text-justify"></p>
+                                <p class="fs-6 text-justify"><%= contraindicacoes%></p>
                                 <p class="fs-6 text-justify"></p>
                                 <p class="fs-6 text-justify"></p>
                             </div>

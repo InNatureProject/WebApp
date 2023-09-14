@@ -38,30 +38,29 @@ const searchPlanta = (id) => {
 
 const getPlantaPreparos = (id) => {
   return new Promise((resolve, reject) => {
-    pool.query(`SELECT pl.cod_plt, pr.descricao as "receita", array_agg(ind.descricao) as "indicacao", array_agg(cind.descricao) as "contraindicacao", array_agg(efc.descricao) as "efeito colateral" from planta pl 
-    inner join planta_preparo pp
-    on pp.fk_planta_cod_plt = pl.cod_plt
-    inner join preparo pr
-    on pr.cod_prp = pp.fk_preparo_cod_prp
-
+    pool.query(`select pl.nome, pr.descricao as "receita", 
+    (SELECT array_agg(ind.descricao) as "indicacao" from indicacao ind
     inner join preparo_indicacao pi
-    on pi.fk_preparo_cod_prp = pr.cod_prp
-    inner join indicacao ind
     on ind.cod_inc = pi.fk_indicacao_cod_inc
-
-    inner join preparo_contraindicacao pci
-    on pci.fk_preparo_cod_prp = pr.cod_prp
-    inner join contraindicacao cind
-    on cind.cod_cinc = pci.fk_contraindicacao_cod_cinc
-
+    where pi.fk_preparo_cod_prp = pr.cod_prp
+    group by pi.fk_preparo_cod_prp)
+     as "indicacao",
+    (SELECT array_agg(cind.descricao) as "contraindicacao" from contraindicacao cind
+    inner join preparo_contraindicacao pc
+    on cind.cod_cinc = pc.fk_contraindicacao_cod_cinc
+    where pc.fk_preparo_cod_prp = pr.cod_prp
+    group by pc.fk_preparo_cod_prp) as "contraindicao",
+    (SELECT array_agg(efc.descricao) as "efeito colateral" from efeito_colateral efc
     inner join preparo_efeito_colateral pefc
-    on pefc.fk_preparo_cod_prp = pr.cod_prp
-    inner join efeito_colateral efc
     on efc.cod_eftcol = pefc.fk_efeito_colateral_cod_eftcol
-
+    where pefc.fk_preparo_cod_prp = pr.cod_prp
+    group by pefc.fk_preparo_cod_prp) as "efeito colateral"
+     from preparo pr
+    inner join planta_preparo pp
+    on pr.cod_prp = pp.fk_preparo_cod_prp
+    inner join planta pl
+    on pp.fk_planta_cod_plt = pl.cod_plt
     where pl.cod_plt = ${id}
-    group by pl.cod_plt, pr.descricao
-    order by pl.cod_plt asc
 `, [], (error, results) => {
       if (error) {
         reject(error);
