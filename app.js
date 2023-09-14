@@ -1,10 +1,21 @@
+// Importações
 const express               = require("express");
 const cors                  = require("cors");
 const bodyParser            = require("body-parser");
-const db                    = require("./functions/Banco/plantas");
+const db                    = require("./functions/Banco/Plantas");
+const cookieParser          = require("cookie-parser");
+// Controladores
+//Controladores
+const Logar                 = require("./functions/Usuario/Logar");
+// const Logado                = require("./functions/Usuario/Logado");
+// const Deslogar              = require("./functions/Usuario/Deslogar");
+// App
 const app                   = new express();
 
+
 const imgs = ["https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg", "https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg", "https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg"]
+
+
 
 app.set("view engine", "ejs");
 app.set("views", "./public/pages");
@@ -12,6 +23,8 @@ app.set("views", "./public/pages");
 app.use(cors());
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 const indexAcess = (req, res) => {
     res.render("index", {imgs:imgs});
