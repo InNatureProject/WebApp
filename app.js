@@ -61,7 +61,7 @@ app.get("/planta/:id", async (req, res) => {
     else {
         let p1 = await db.getPlanta(r1);
         let pp1 = await db.getPlantaPreparos(r1);
-        res.render("planta", {planta: p1, preparos: pp1});
+        res.render("planta", {planta:p1, preparos: pp1});
     }
     
     
@@ -70,7 +70,7 @@ app.get("/planta/:id", async (req, res) => {
 
 
 app.listen(port = 3000, () => {
-
+    console.log("Servidor está online na porta 3000");
 })
 
 // module.exports = {app}

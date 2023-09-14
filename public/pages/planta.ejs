@@ -30,21 +30,35 @@
                 </div>
                 <div class="row preparos">
                     
-                    <%
-                    console.log(preparos); 
-                    for (var i = 0; i < preparos.length; i++) { 
+                    <% for (var i = 0; i < preparos.length; i++) { 
                         let indicacoes = "";
                         indicacoes = "Indicacoes:  " + preparos[i]["indicacao"][0];
                         for (let j = 1; j < preparos[i]["indicacao"].length-1; j++) {
                             indicacoes = indicacoes.concat(", " + preparos[i]["indicacao"][j]);
                         }
-                        indicacoes = indicacoes.concat(" e " + preparos[i]["indicacao"].slice(-1));
+                        if (preparos[i]["indicacao"].length > 1) {
+                            indicacoes = indicacoes.concat(" e " + preparos[i]["indicacao"].slice(-1));
+                        }
 
+                        
                         let contraindicacoes = "";
-                        for (let j = 1; )
+                        contraindicacoes = "Contraindicacoes:  " + preparos[i]["contraindicacao"][0];
+                        for (let j = 1; j < preparos[i]["contraindicacao"].length-1; j++) {
+                            contraindicacoes = contraindicacoes.concat(", " + preparos[i]["contraindicacao"][j]);
+                        }
+                        if (preparos[i]["contraindicacao"].length > 1) {
+                            contraindicacoes = contraindicacoes.concat(" e " + preparos[i]["contraindicacao"].slice(-1));    
+                        }
                         
-                        
-                        
+
+                        let efeitos_colaterais = "";
+                        efeitos_colaterais = "Efeitos Colaterais:  " + preparos[i]["efeito colateral"][0];
+                        for (let j = 1; j < preparos[i]["efeito colateral"].length-1; j++) {
+                            efeitos_colaterais = efeitos_colaterais.concat(", " + preparos[i]["efeito colateral"][j]);
+                        }
+                        if (preparos[i]["efeito colateral"].length > 1) {
+                            efeitos_colaterais = efeitos_colaterais.concat(" e " + preparos[i]["efeito colateral"].slice(-1));
+                        }
 
                         %>
                     <div>
@@ -55,8 +69,8 @@
 
                             <div class="accordion-conteudo fs-4 text-justify" style="display: none">
                                 <p class="fs-6 text-justify"><%= indicacoes %></p>
-                                <p class="fs-6 text-justify"><%= contraindicacoes%></p>
-                                <p class="fs-6 text-justify"></p>
+                                <p class="fs-6 text-justify"><%= contraindicacoes %></p>
+                                <p class="fs-6 text-justify"><%= efeitos_colaterais %></p>
                                 <p class="fs-6 text-justify"></p>
                             </div>
                         </div>

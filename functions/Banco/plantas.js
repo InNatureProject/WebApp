@@ -38,7 +38,7 @@ const searchPlanta = (id) => {
 
 const getPlantaPreparos = (id) => {
   return new Promise((resolve, reject) => {
-    pool.query(`select pl.nome, pr.descricao as "receita", 
+    pool.query(`select pr.descricao as "receita", 
     (SELECT array_agg(ind.descricao) as "indicacao" from indicacao ind
     inner join preparo_indicacao pi
     on ind.cod_inc = pi.fk_indicacao_cod_inc
@@ -49,7 +49,7 @@ const getPlantaPreparos = (id) => {
     inner join preparo_contraindicacao pc
     on cind.cod_cinc = pc.fk_contraindicacao_cod_cinc
     where pc.fk_preparo_cod_prp = pr.cod_prp
-    group by pc.fk_preparo_cod_prp) as "contraindicao",
+    group by pc.fk_preparo_cod_prp) as "contraindicacao",
     (SELECT array_agg(efc.descricao) as "efeito colateral" from efeito_colateral efc
     inner join preparo_efeito_colateral pefc
     on efc.cod_eftcol = pefc.fk_efeito_colateral_cod_eftcol
