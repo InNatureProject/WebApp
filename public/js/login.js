@@ -15,30 +15,20 @@ const alerta4 = document.getElementById("alerta4");
 const alerta5 = document.getElementById("alerta5");
 
 function Logar(email, senha) {
-    // axios.post('api/users/logar', {
-    //     email, senha
-    // }).then(response => {
-    //     if (response.data.erro) {
-    //         return alert(response.data.erro)
-    //     } else {
-    //         alert("deu Certo");
-    //     }
-    // }).catch(erro => {
-    //     return alert("Erro");
-    // })
-
-    fetch("api/users/logar", {
-  method: "POST",
-  body: JSON.stringify({
-    email: email,
-    senha: senha
-  }),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8"
-  }
-});
-
-}
+    // let email = document.getElementById("cd_email").value;
+    // let senha = document.getElementById("cd_senha").value;
+    axios.post('api/users/logar', {
+    email: email, senha: senha
+    }).then(response => {
+        if (response.data.erro) {
+            return alert("response.data.erro")
+        } else {
+            page('usuario');
+        }
+    }).catch(erro => {
+        return alert("Erro");
+    })
+    }
 
 butao.addEventListener("click", (e) => {
     let certo = true;
