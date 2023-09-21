@@ -3,7 +3,7 @@ const User = require("../Banco/User");
 const Token = require("jsonwebtoken");
 const res = require("express/lib/response");
 
-const Logar = async (user) => {
+const Logar = async (user, res) => {
     let email = user.email;
     let senha = user.senha;
 
@@ -14,22 +14,22 @@ const Logar = async (user) => {
     let Find = await User.find(email, senha)
     .then(response => {
         return response;
+        
     }).catch(erro => {
         return {erro: erro};
     })
 
-    if (Find.length == 1 || Find.erro) {
-        return {erro: 'Informações Incorretas'}
+    if (Find.length < 1 || Find.erro) {
+        return {erro: 'Informações Incorretas'};
     }
 
-    token = await Token.sign({
-        id: find[0].cod_usr,
-        nome: find[0].nome,
-        email: find[0].email,
-    }, "SenhaSegura");
-
-    res.cookie('Token', token);
+    let token = await Token.sign({
+        id: Find[0].cod_usr,
+        nome: Find[0].nome,
+        email: Find[0].email,
+    }, "Plantas2354Senha");
+    res.cookie("Token", token);
+    // res.redirect("usuario");
     res.sendStatus(200);
 }
-
 module.exports = Logar;

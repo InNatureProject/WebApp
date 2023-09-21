@@ -7,8 +7,8 @@ const cookieParser          = require("cookie-parser");
 // Controladores
 //Controladores
 const Logar                 = require("./functions/Usuario/Logar");
-// const Logado                = require("./functions/Usuario/Logado");
-// const Deslogar              = require("./functions/Usuario/Deslogar");
+const Logado                = require("./functions/Usuario/Logado");
+const Deslogar              = require("./functions/Usuario/Deslogar");
 // App
 const app                   = new express();
 
@@ -53,6 +53,16 @@ app.get("/login", (req, res) => {
     res.render("login");
 })
 
+app.get("/usuario", async (req, res) => {
+    let log1 = await Logado(req);
+    console.log(log1);
+    if (log1.result) {
+        res.render("usuario", {nome: log1.data.nome, email: log1.data.email});
+    } else {
+        res.redirect("/login")
+    }
+})
+
 app.get("/plantas", async (req, res) => {
     let j = await db.getAllPlantas(50);
     // console.log(j);
@@ -80,7 +90,13 @@ app.get("/planta/:id", async (req, res) => {
     
 })
 
+app.post("/api/users/logar", async (req, res) => {
+    res.send(await Logar(req.body, res));
+})
 
+app.get("/api/users/deslogar", async (req, res) => {
+    res.send(await Deslogar(res))
+})
 
 app.listen(port = 3000, () => {
     console.log("Servidor está online na porta 3000");

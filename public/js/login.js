@@ -14,6 +14,31 @@ const alerta3 = document.getElementById("alerta3");
 const alerta4 = document.getElementById("alerta4");
 const alerta5 = document.getElementById("alerta5");
 
+function Logar(email, senha) {
+    // axios.post('api/users/logar', {
+    //     email, senha
+    // }).then(response => {
+    //     if (response.data.erro) {
+    //         return alert(response.data.erro)
+    //     } else {
+    //         alert("deu Certo");
+    //     }
+    // }).catch(erro => {
+    //     return alert("Erro");
+    // })
+
+    fetch("api/users/logar", {
+  method: "POST",
+  body: JSON.stringify({
+    email: email,
+    senha: senha
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+});
+
+}
 
 butao.addEventListener("click", (e) => {
     let certo = true;
@@ -44,11 +69,6 @@ butao.addEventListener("click", (e) => {
     }
 
     if (certo) {
-        if (email.value == localStorage.getItem("email") && senha.value == localStorage.getItem("senha")) {
-            localStorage.setItem("logado", "1");
-            window.location.replace("usuario.html");
-        } else {
-            alert("Está conta não existe");
-        }
+        Logar(email.value, senha.value)
     }
 });
