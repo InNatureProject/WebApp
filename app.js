@@ -4,12 +4,13 @@ const cors                  = require("cors");
 const bodyParser            = require("body-parser");
 const db                    = require("./functions/Banco/Plantas");
 const cookieParser          = require("cookie-parser");
-const {body, validationResult} = require("express-validator");
+
 // Controladores
 //Controladores
 const Logar                 = require("./functions/Usuario/Logar");
 const Logado                = require("./functions/Usuario/Logado");
 const Deslogar              = require("./functions/Usuario/Deslogar");
+const Validar               = require("./functions/Usuario/Validar");
 // App
 const app                   = new express();
 
