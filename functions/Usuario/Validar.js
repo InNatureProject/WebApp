@@ -18,8 +18,12 @@ const validarEmail = async (email) => {
     return true;
 }
 
-const validarSenha(senha) {
-    
+const validarSenha = async (senha) =>  {
+    if (typeof(senha) != "string") {
+        return false;
+    }
+
+    return true;
 }
 
 module.exports = {validarEmail, validarSenha};
