@@ -23,6 +23,9 @@ const validarSenha = async (senha) =>  {
         return false;
     }
 
+    if (senha.length < 6 || senha.length > 20) {
+        return false;
+    }
     
 
     return true;

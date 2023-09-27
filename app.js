@@ -4,6 +4,7 @@ const cors                  = require("cors");
 const bodyParser            = require("body-parser");
 const db                    = require("./functions/Banco/Plantas");
 const cookieParser          = require("cookie-parser");
+const md5                   = require("md5");
 
 // Controladores
 //Controladores
@@ -107,6 +108,7 @@ app.get("/api/users/deslogar", async (req, res) => {
 
 app.listen(port = 3001, () => {
     console.log("Servidor está online na porta 3001");
+    console.log(md5("senha123"))
 })
 
 // module.exports = {app}

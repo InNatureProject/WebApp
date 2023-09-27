@@ -2,6 +2,7 @@ const { response } = require("express");
 const User = require("../Banco/User");
 const Token = require("jsonwebtoken");
 const res = require("express/lib/response");
+const Validar = require("./Validar");
 
 const Logar = async (user, res) => {
     let email = user.email;
@@ -9,6 +10,10 @@ const Logar = async (user, res) => {
 
     if (!email || !senha) {
         return {erro: "Dados Insuficientes"};
+    }
+
+    if (Validar.validarEmail(email) && Validar.validarSenha(senha)) {
+        res.send(alert("Dados Inválidos"))
     }
 
     let Find = await User.find(email, senha)
