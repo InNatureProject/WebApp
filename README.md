@@ -9,4 +9,5 @@ Versões passadas:
     - 1.6: Validação:
         - 1.6.1: Validação Email
         - 1.6.2: Validação Senha
+        - 1.6.3: Segurança, baseada em md5, anti sql injection
     
