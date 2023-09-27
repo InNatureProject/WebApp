@@ -23,6 +23,8 @@ const validarSenha = async (senha) =>  {
         return false;
     }
 
+    
+
     return true;
 }
 

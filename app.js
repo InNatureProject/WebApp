@@ -57,7 +57,6 @@ app.get("/login", (req, res) => {
 
 app.get("/usuario", async (req, res) => {
     let log1 = await Logado(req);
-    console.log(log1);
     if (log1.result) {
         res.render("usuario", {nome: log1.data.nome, email: log1.data.email});
     } else {
@@ -100,8 +99,8 @@ app.get("/api/users/deslogar", async (req, res) => {
     res.send(await Deslogar(res))
 })
 
-app.listen(port = 3000, () => {
-    console.log("Servidor está online na porta 3000");
+app.listen(port = 3001, () => {
+    console.log("Servidor está online na porta 3001");
 })
 
 // module.exports = {app}
