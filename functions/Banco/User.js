@@ -1,5 +1,5 @@
 const pool = require("./Connection").pool;
-
+C
 const find = (email, senha) => {
     return new Promise((resolve, reject) => {
       pool.query(`select * from usuario

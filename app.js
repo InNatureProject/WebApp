@@ -95,9 +95,15 @@ app.post("/api/users/logar", async (req, res) => {
     res.send(await Logar(req.body, res));
 })
 
+app.post("/api/users/cadastrar", async (req, res) => {
+    
+})
+
 app.get("/api/users/deslogar", async (req, res) => {
     res.send(await Deslogar(res))
 })
+
+
 
 app.listen(port = 3001, () => {
     console.log("Servidor está online na porta 3001");
