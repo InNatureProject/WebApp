@@ -15,4 +15,4 @@ const cadastrarUsuario = (nome, email, senha) => {
 }
 
 
-module.exports = cadastrarUsuario;
+module.exports = {cadastrarUsuario};

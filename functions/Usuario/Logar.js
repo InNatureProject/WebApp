@@ -1,4 +1,4 @@
-const { response } = require("express");
+// const { response } = require("express");
 const User = require("../Banco/User");
 const Token = require("jsonwebtoken");
 const res = require("express/lib/response");
@@ -8,13 +8,17 @@ const Logar = async (user, res) => {
     let email = user.email;
     let senha = user.senha;
 
+
     if (!email || !senha) {
         return {erro: "Dados Insuficientes"};
     }
 
-    if (Validar.validarEmail(email) && Validar.validarSenha(senha)) {
-        res.send(alert("Dados Inválidos"))
+
+
+    if (!(Validar.validarEmail(email) && Validar.validarSenha(senha))) {
+        return {erro: "Dados Inválidos"};
     }
+
 
     let Find = await User.find(email, senha)
     .then(response => {
@@ -29,10 +33,10 @@ const Logar = async (user, res) => {
     }
 
     let token = await Token.sign({
-        id: Find[0].cod_usr,
         nome: Find[0].nome,
         email: Find[0].email,
     }, "Plantas2354Senha");
+
     res.cookie("Token", token);
     // res.redirect("usuario");
     res.sendStatus(200);

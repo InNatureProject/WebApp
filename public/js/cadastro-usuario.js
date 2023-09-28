@@ -21,6 +21,20 @@ const alerta5 = document.getElementById("alerta5");
 const alerta6 = document.getElementById("alerta6");
 const alerta7 = document.getElementById("alerta7");
 
+function Cadastrar(nome, email, senha) {
+    axios.post('api/users/cadastrar', {
+        nome: nome, email: email, senha: senha
+        }).then(response => {
+            if (response.data.erro) {
+                return alert("response.data.erro")
+            } else {
+                page('usuario');
+            }
+        }).catch(erro => {
+            return alert("Erro");
+        })
+}
+
 function contador(string){
     let cont = 0;
     let s = ''
@@ -31,9 +45,7 @@ function contador(string){
     return cont;
 }
 
-// Validando conteúdo dos formulários
-
-submit.addEventListener("click", (e) => {
+function verificar(e) {
     let certo = true;
     // Campos preenchidos
     if (nome.value == 0){
@@ -97,23 +109,17 @@ submit.addEventListener("click", (e) => {
         alerta7.style.display = "none";
     }
 
-    if (localStorage.getItem("email") == email.value) {
-        certo = false;
-        alert("Email já cadastrado")
-    }
 
     if (certo) {
-        if (typeof(Storage) !== "undefined") {
-            // Store
-            localStorage.setItem("nome", nome.value);
-            localStorage.setItem("email", email.value);
-            localStorage.setItem("senha", senha.value);
-            localStorage.setItem("logado", "1");
-            window.location.replace("usuario.html");
-            
-          } else {
-           alert("Não é possível logar neste navegador");
-          }
-        
+        Cadastrar(nome.value, email.value, senha.value);
+    }
+}
+
+// Validando conteúdo dos formulários
+
+submit.addEventListener("click", verificar);
+document.addEventListener("keypress", (e) => {
+    if (e.key == "Enter") {
+        verificar(e);
     }
 });

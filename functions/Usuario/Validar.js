@@ -7,6 +7,7 @@ const validarEmail = async (email) => {
     let v1 = comp[1].length - comp[1].replaceAll(".", "").length;
     if (!(v1 > 0 && v1 < 3)) {
         // console.log(comp[1].length,comp[1].replaceAll(".").length);
+
         return false;
     }
     if (!(comp[1].indexOf(".com") > -1)) {
@@ -15,6 +16,7 @@ const validarEmail = async (email) => {
     if (!(comp[0].replace(/[a-z, 0-9, .]/g, "").length == 0)) {
         return false;
     }
+
     return true;
 }
 
@@ -27,7 +29,6 @@ const validarSenha = async (senha) =>  {
         return false;
     }
     
-
     return true;
 }
 

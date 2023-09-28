@@ -11,6 +11,7 @@ const md5                   = require("md5");
 const Logar                 = require("./functions/Usuario/Logar");
 const Logado                = require("./functions/Usuario/Logado");
 const Deslogar              = require("./functions/Usuario/Deslogar");
+const Cadastrar             = require("./functions/Usuario/Cadastrar");
 const Validar               = require("./functions/Usuario/Validar");
 // App
 const app                   = new express();
@@ -44,16 +45,26 @@ app.get("/index", (req, res) => {
 
 
 
-app.get("/cadastro-usuario", (req, res) => {
-    res.render("cadastro-usuario");
+app.get("/cadastro-usuario", async (req, res) => {
+    if (await Logado(req).result) {
+        res.redirect("usuario");
+    } else {
+        res.render("cadastro-usuario");
+        
+    }
 })
 
 app.get("/cadastro-planta", (req, res) => {
     res.render("cadastro-planta");
 })
 
-app.get("/login", (req, res) => {
-    res.render("login");
+app.get("/login", async (req, res) => {
+    if (await Logado(req).result) {
+        res.redirect("usuario");
+    } else {
+        res.render("login");
+    }
+    
 })
 
 app.get("/usuario", async (req, res) => {
@@ -72,7 +83,8 @@ app.get("/plantas", async (req, res) => {
 })
 
 app.get("/plantas/:id", async (req, res) => {
-    let r3 = req.params.id.replace("&", " ");
+    let r3 = req.params.id.replace("&", " "); // criar validação para tira caracteres especiais utilizando replace
+    r3 = r3.replace(/[`"`,`'`,"/","(",")",";","*","$","&","@","#","%","[","]","{","}",`,`,"£","¢","*","!",":","|"]/g,"");//aqui está a validação
     let j = await db.searchPlanta(r3);
 
     res.render("plantas", {plantas: j});
@@ -97,18 +109,18 @@ app.post("/api/users/logar", async (req, res) => {
 })
 
 app.post("/api/users/cadastrar", async (req, res) => {
-    
+    res.send(await Cadastrar(req.body, res));
 })
 
 app.get("/api/users/deslogar", async (req, res) => {
-    res.send(await Deslogar(res))
+    res.send(await Deslogar(res));
 })
 
 
 
 app.listen(port = 3001, () => {
     console.log("Servidor está online na porta 3001");
-    console.log(md5("senha123"))
+    
 })
 
 // module.exports = {app}

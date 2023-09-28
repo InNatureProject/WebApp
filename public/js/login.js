@@ -18,19 +18,19 @@ function Logar(email, senha) {
     // let email = document.getElementById("cd_email").value;
     // let senha = document.getElementById("cd_senha").value;
     axios.post('api/users/logar', {
-    email: email, senha: senha
-    }).then(response => {
-        if (response.data.erro) {
-            return alert("response.data.erro")
-        } else {
-            page('usuario');
-        }
-    }).catch(erro => {
-        return alert("Erro");
-    })
+        email: email, senha: senha
+        }).then(response => {
+            if (response.data.erro) {
+                return alert("response.data.erro")
+            } else {
+                page('usuario');
+            }
+        }).catch(erro => {
+            return alert("Erro");
+        })
     }
 
-butao.addEventListener("click", (e) => {
+function verificar(e) {
     let certo = true;
     // Campos preenchidos
     
@@ -59,6 +59,13 @@ butao.addEventListener("click", (e) => {
     }
 
     if (certo) {
-        Logar(email.value, senha.value)
+        Logar(email.value, senha.value);
+    }
+}
+
+butao.addEventListener("click", verificar);
+document.addEventListener("keypress", (e) => {
+    if (e.key == "Enter") {
+        verificar(e);
     }
 });
