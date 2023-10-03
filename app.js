@@ -1,20 +1,19 @@
 // Importações
-const express               = require("express");
-const cors                  = require("cors");
-const bodyParser            = require("body-parser");
-const db                    = require("./functions/Banco/Plantas");
-const cookieParser          = require("cookie-parser");
-const md5                   = require("md5");
+const express      = require("express");
+const cors         = require("cors");
+const bodyParser   = require("body-parser");
+const db           = require("./functions/Banco/Plantas");
+const cookieParser = require("cookie-parser");
+
 
 // Controladores
-//Controladores
-const Logar                 = require("./functions/Usuario/Logar");
-const Logado                = require("./functions/Usuario/Logado");
-const Deslogar              = require("./functions/Usuario/Deslogar");
-const Cadastrar             = require("./functions/Usuario/Cadastrar");
-const Validar               = require("./functions/Usuario/Validar");
+const Logar        = require("./functions/Usuario/Logar");
+const Logado       = require("./functions/Usuario/Logado");
+const Deslogar     = require("./functions/Usuario/Deslogar");
+const Cadastrar    = require("./functions/Usuario/Cadastrar");
+const Validar      = require("./functions/Usuario/Validar");
 // App
-const app                   = new express();
+const app          = new express();
 
 
 const imgs = ["https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg", "https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg", "https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg"]
@@ -102,6 +101,15 @@ app.get("/planta/:id", async (req, res) => {
     }
     
     
+})
+
+app.get("/favoritos", async (req, res) => {
+    let log1 = await Logado(req);
+    if (log1.result) {
+        res.render("favoritos", {plantas: await db.getFavoritos(log1.data.id)});
+    } else {
+        res.render("error", {erro: "Login deve ser realizado para favoritar plantas."});
+    }
 })
 
 app.post("/api/users/logar", async (req, res) => {

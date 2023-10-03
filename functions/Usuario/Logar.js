@@ -1,7 +1,7 @@
 // const { response } = require("express");
-const User = require("../Banco/User");
-const Token = require("jsonwebtoken");
-const res = require("express/lib/response");
+const User    = require("../Banco/User");
+const Token   = require("jsonwebtoken");
+const res     = require("express/lib/response");
 const Validar = require("./Validar");
 
 const Logar = async (user, res) => {
@@ -33,6 +33,7 @@ const Logar = async (user, res) => {
     }
 
     let token = await Token.sign({
+        id: Find[0].cod_usr,
         nome: Find[0].nome,
         email: Find[0].email,
     }, "Plantas2354Senha");

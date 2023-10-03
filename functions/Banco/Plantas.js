@@ -36,6 +36,21 @@ const searchPlanta = (id) => {
   });
 };
 
+const getFavoritos = (id) => {
+  return new Promise((resolve, reject) => {
+    pool.query(`select pl.* from planta pl
+    inner join usuario_planta up
+    on up.fk_planta_cod_plt = pl.cod_plt
+    where up.fk_usuario_cod_usr = ${id};`, [], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(results.rows);
+      }
+    })
+  });
+};
+
 const getPlantaPreparos = (id) => {
   return new Promise((resolve, reject) => {
     pool.query(`select pr.descricao as "receita", 
@@ -73,4 +88,4 @@ const getPlantaPreparos = (id) => {
 
 
 
-module.exports = {getAllPlantas, getPlanta, getPlantaPreparos, searchPlanta};
+module.exports = {getAllPlantas, getPlanta, getPlantaPreparos, searchPlanta, getFavoritos};
