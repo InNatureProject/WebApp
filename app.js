@@ -124,7 +124,7 @@ app.get("/api/users/deslogar", async (req, res) => {
     res.send(await Deslogar(res));
 })
 
-
+app.get("/api/users/favoritar")
 
 app.listen(port = 3001, () => {
     console.log("Servidor está online na porta 3001");

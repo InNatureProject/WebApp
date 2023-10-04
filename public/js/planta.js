@@ -1,8 +1,22 @@
-favoritar = false;
+const favoritar = true;
 
 
 function favorite(id) {
-  alert(id)
+  if (favoritar) {
+    favoritar = false;
+    axios.post('api/users/favoritar', {
+      planta: window.location.pathname.split("/").at(-1)
+      }).then(response => {
+        favoritar = true
+          if (response.data.erro) {
+              return alert("response.data.erro")
+          } else {
+              page('usuario');
+          }
+      }).catch(erro => {
+          return alert("Erro");
+      })
+  } 
 }
 
 const cabecalho = document.querySelectorAll(".accordion-cabecalho");
