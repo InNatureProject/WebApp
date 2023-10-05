@@ -1,0 +1,41 @@
+<script defer>
+// Check browser support
+if (typeof(Storage) !== "undefined") {
+    let logado = localStorage.getItem("logado");
+    // Store
+    if (logado != "0" && logado != "1") {
+        localStorage.setItem("logado", "0");
+    }
+  } else {
+   alert("Não é possível logar neste navegador");
+  }
+
+// elementos do DOM
+var fotoPerfil = document.getElementById("fotoPerfil");
+var usuario = document.getElementById("usuario");
+var logado = localStorage.getItem("logado");
+
+// modificações para quando logado
+if (logado == "1") {
+    fotoPerfil.src = "img/foto_padrao-verde.png";
+    usuario.href = "usuario.html";
+    
+} else {
+    fotoPerfil.src = "img/foto_padrao.png";
+    usuario.href = "cadastro-usuario.html";
+}
+
+// function changePage(a) {
+//     window.location.href = a;
+// }
+
+// Para realizar pesquisas
+// const barra_pesquisa = document.querySelector("input.pesquisa");
+
+document.addEventListener("keydown", (e) => {
+    if (e.key == "Enter" && barra_pesquisa != "") {
+        localStorage.setItem("pesquisa", barra_pesquisa.value)
+        window.location.replace("plantas.html")
+    }
+});
+</script>
