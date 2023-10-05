@@ -112,6 +112,14 @@ app.get("/favoritos", async (req, res) => {
     }
 })
 
+app.get("/command/getPlanta/:id", async (req, res) => {
+    res.send(await db.getPlanta(req.params.id));
+})
+
+app.get("/command/getAllPlantas", async (req, res) => {
+    res.send(await db.getAllPlantas(50));
+})
+
 app.post("/api/users/logar", async (req, res) => {
     res.send(await Logar(req.body, res));
 })
