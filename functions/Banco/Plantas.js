@@ -53,7 +53,10 @@ const getFavoritos = (id) => {
 
 const getPlantaPreparos = (id) => {
   return new Promise((resolve, reject) => {
-    pool.query(`select pr.descricao as "receita", 
+    pool.query(`select pr.titulo, pr.descricao as "receita", 
+    (SELECT tprp.descricao from tipo_preparo tprp
+    where tprp.cod_tprp = pr.fk_tipo_preparo_cod_tprp)
+    as "tipo_preparo",
     (SELECT array_agg(ind.descricao) as "indicacao" from indicacao ind
     inner join preparo_indicacao pi
     on ind.cod_inc = pi.fk_indicacao_cod_inc

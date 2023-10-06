@@ -15,3 +15,4 @@ Versões passadas: <br>
         - 1.7.1: Adicionando ícone e pequenas correções na geração do Token <br>
         - 1.7.2: Criado as funções de api para mobile <br>
         - 1.7.3: A forma de inclusão dos arquivos de estilo (css) e script (js) foi trocada de um link referenciando outros arquivos para um include que adiciona aos arquivos na hora da renderização. E as imagens pararam de vir do servidor, sendo passado um link para que o cliente tenha elas. <br>
+        - 1.7.4: Banco de Dados atualizado e implementação do novo banco de dados atualizado. <br>

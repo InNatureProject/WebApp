@@ -70,11 +70,13 @@
                         %>
                     <div>
                         <div class="preparo text-justify">
-                            <div class="accordion-cabecalho fs-5 text-justify" children="hide" onClick="toggleAccordion(this)">
-                                <%= preparos[i]["receita"] %>
+                            <div class="accordion-cabecalho fs-3 text-justify" children="hide" onClick="toggleAccordion(this)">
+                                <%= preparos[i]["titulo"] %>
                             </div>
 
                             <div class="accordion-conteudo fs-4 text-justify" style="display: none">
+                                <p class="fs-4 text-justify">Tipo: <%= preparos[i]["tipo_preparo"] %></p>
+                                <p class="fs-5 text-justify"><%= preparos[i]["receita"] %></p>
                                 <p class="fs-6 text-justify"><%= indicacoes %></p>
                                 <p class="fs-6 text-justify"><%= contraindicacoes %></p>
                                 <p class="fs-6 text-justify"><%= efeitos_colaterais %></p>
