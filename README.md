@@ -11,7 +11,7 @@ Versões passadas: <br>
         - 1.6.2: Validação Senha <br>
         - 1.6.3: Segurança, baseada em md5, anti sql injection <br>
         - 1.6.4: Cadastro Finalizado <br>
-    - 1.7: Favoritagem: <br>
+    - 1.7: Mudanças gerais: <br>
         - 1.7.1: Adicionando ícone e pequenas correções na geração do Token <br>
         - 1.7.2: Criado as funções de api para mobile <br>
         - 1.7.3: A forma de inclusão dos arquivos de estilo (css) e script (js) foi trocada de um link referenciando outros arquivos para um include que adiciona aos arquivos na hora da renderização. E as imagens pararam de vir do servidor, sendo passado um link para que o cliente tenha elas. <br>
