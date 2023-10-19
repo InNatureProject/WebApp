@@ -1,5 +1,5 @@
 # WebApp <br>
-Versão Atual: 1.6.2 Validação Senha <br>
+Versão Atual: 1.8.1 Favoritagem <br>
 Versões passadas: <br>
     - 1.1: Base <br>
     - 1.2: Páginas <br>
