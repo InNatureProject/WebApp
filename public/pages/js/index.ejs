@@ -23,7 +23,13 @@ function loadCarousel(pl) {
         //Adiciona a imagem à div e a div ao menu dos mais pesquisados
         item.appendChild(image);
         maisPesquisados.appendChild(item);
-    }
+    }a
+}
+
+if (window.screen.width > window.screen.height) {
+    document.querySelector(".bemVindo img").classList.add("pc");
+} else {
+    document.querySelector(".bemVindo img").classList.add("cl");
 }
 
 // utilizando o fetch para pegar as primeiras plantas (ainda não possuo o comando para as mais pesquisadas)
