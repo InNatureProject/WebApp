@@ -19,4 +19,4 @@ Versões passadas: <br>
         - 1.7.5: Ìcone personalizado colocado (em teoria), com o href sendo refenciado para o github de imagens. Dessa forma se economiza requisições. <br>
         - 1.7.6: Pequenas correções na tela de login e cadastro. <br>
     - 1.8: Favoritagem:
-        - 1.8.1: 
+        - 1.8.1: Testes
