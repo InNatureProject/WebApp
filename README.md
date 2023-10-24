@@ -18,5 +18,6 @@ Versões passadas: <br>
         - 1.7.4: Banco de Dados atualizado e implementação do novo banco de dados atualizado. <br>
         - 1.7.5: Ìcone personalizado colocado (em teoria), com o href sendo refenciado para o github de imagens. Dessa forma se economiza requisições. <br>
         - 1.7.6: Pequenas correções na tela de login e cadastro. <br>
-    - 1.8: Favoritagem:
+    - 1.8: Adaptação para Mobile:
         - 1.8.1: Testes
+        - 1.8.2: Mudanças de funções
