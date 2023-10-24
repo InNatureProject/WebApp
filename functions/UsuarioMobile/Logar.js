@@ -7,7 +7,7 @@ const Validar = require("./Validar");
 const Logar = async (user, res) => {
     let email = user.email;
     let senha = user.senha;
-
+    // console.log(user);
 
     if (!email || !senha) {
         return {erro: "Dados Insuficientes"};
@@ -37,8 +37,8 @@ const Logar = async (user, res) => {
         nome: Find[0].nome,
         email: Find[0].email,
     }, "Plantas2354Senha");
-
-    res.cookie("Token", token);
+    console.log(token);
+    res.json(JSON.stringify({"data": token}));
     // res.redirect("usuario");
     res.sendStatus(200);
 }

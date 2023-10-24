@@ -12,6 +12,7 @@ const Logado       = require("./functions/Usuario/Logado");
 const Deslogar     = require("./functions/Usuario/Deslogar");
 const Cadastrar    = require("./functions/Usuario/Cadastrar");
 const Validar      = require("./functions/Usuario/Validar");
+const LogarM       = require("./functions/UsuarioMobile/Logar");
 // App
 const app          = new express();
 
@@ -120,6 +121,11 @@ app.get("/command/getAllPlantas", async (req, res) => {
     res.send(await db.getAllPlantas(50));
 })
 
+app.post("/command/logar", async (req, res) => {
+    console.log(req);
+    res.send(await LogarM(req.body, res));
+})
+
 app.post("/api/users/logar", async (req, res) => {
     res.send(await Logar(req.body, res));
 })
@@ -132,7 +138,9 @@ app.get("/api/users/deslogar", async (req, res) => {
     res.send(await Deslogar(res));
 })
 
-app.get("/api/users/favoritar")
+// app.get("/api/users/favoritar")
+
+
 
 app.listen(port = 3000, () => {
     console.log("Servidor está online na porta 3001");
