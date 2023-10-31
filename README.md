@@ -18,7 +18,8 @@ Versões passadas: <br>
         - 1.7.4: Banco de Dados atualizado e implementação do novo banco de dados atualizado. <br>
         - 1.7.5: Ìcone personalizado colocado (em teoria), com o href sendo refenciado para o github de imagens. Dessa forma se economiza requisições. <br>
         - 1.7.6: Pequenas correções na tela de login e cadastro. <br>
-    - 1.8: Adaptação para Mobile:
-        - 1.8.1: Testes
-        - 1.8.2: Mudanças de funções
-        - 1.8.3: Upload para codespaces
+    - 1.8: Adaptação para Mobile:<br>
+        - 1.8.1: Testes<br>
+        - 1.8.2: Mudanças de funções<br>
+        - 1.8.3: Upload para codespaces<br>
+        - 1.8.4: Correções de Linha no readme.md<br>
