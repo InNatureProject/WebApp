@@ -13,6 +13,7 @@ const Deslogar      = require("./functions/Usuario/Deslogar");
 const Cadastrar     = require("./functions/Usuario/Cadastrar");
 const Validar       = require("./functions/Usuario/Validar");
 const LogarM        = require("./functions/UsuarioMobile/Logar");
+const CadastrarM    = require("./functions/UsuarioMobile/Cadastrar");
 const eFavorita     = require("./functions/Usuario/EFavorita");
 const Favoritar     = require("./functions/Usuario/Favoritar");
 // App
@@ -134,6 +135,11 @@ app.get("/command/getAllPlantas", async (req, res) => {
 })
 
 app.post("/command/logar", async (req, res) => {
+    let log = await LogarM(req.body);
+    res.send(log);
+})
+
+app.post("/command/cadastrar", async (req, res) => {
     console.log(req);
     res.send(await LogarM(req.body, res));
 })
@@ -157,7 +163,7 @@ app.post("/planta/api/users/favoritar", async (req, res) => {
 
 
 app.listen(port = 3000, () => {
-    console.log("Servidor está online na porta 3001");
+    console.log("Servidor está online na porta 3000");
     
 })
 

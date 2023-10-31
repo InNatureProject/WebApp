@@ -1,10 +1,10 @@
 // const { response } = require("express");
 const User    = require("../Banco/User");
 const Token   = require("jsonwebtoken");
-const res     = require("express/lib/response");
+// const res     = require("express/lib/response");
 const Validar = require("./Validar");
 
-const Logar = async (user, res) => {
+const Logar = async (user) => {
     let email = user.email;
     let senha = user.senha;
     // console.log(user);
@@ -38,8 +38,17 @@ const Logar = async (user, res) => {
         email: Find[0].email,
     }, "Plantas2354Senha");
     console.log(token);
-    res.json(JSON.stringify({"data": token}));
+    // res.json(JSON.stringify({"data": token}));
     // res.redirect("usuario");
-    res.sendStatus(200);
+    // res.sendStatus(200);
+    return new Promise((resolve, reject) => {
+        if (token == '') {
+            reject("erro");
+        } else {
+            resolve(token);
+        }
+    })
+    
+    
 }
 module.exports = Logar;

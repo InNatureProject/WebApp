@@ -23,3 +23,4 @@ Versões passadas: <br>
         - 1.8.2: Mudanças de funções<br>
         - 1.8.3: Upload para codespaces<br>
         - 1.8.4: Correções de Linha no readme.md<br>
+        - 1.8.5: Finalizado Logar para mobile<br>
