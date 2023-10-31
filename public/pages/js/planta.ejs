@@ -1,18 +1,21 @@
 <script defer>
 const favoritar = true;
+var cookies = {};
+document.cookie.split(";").forEach((i) => {
+  let data = i.split("=");
+	cookies[data[0]] = data[1];
+})
 
-
-function favorite(id) {
+function favorite() {
   if (favoritar) {
-    favoritar = false;
     axios.post('api/users/favoritar', {
-      planta: window.location.pathname.split("/").at(-1)
-      }).then(response => {
-        favoritar = true
+      Token: cookies["Token"],
+      Planta: sessionStorage.getItem("planta")
+      }).then(response => { 
           if (response.data.erro) {
               return alert("response.data.erro")
           } else {
-              page('usuario');
+              window.location.reload();
           }
       }).catch(erro => {
           return alert("Erro");

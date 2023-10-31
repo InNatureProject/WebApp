@@ -1,7 +1,15 @@
 const Token = require("jsonwebtoken");
 
 async function Logado(req) {
-    let Auth = req.cookies.Token || null;
+    let Auth = null;
+    if (typeof(req) == "string") {
+        Auth = req;
+    } else { 
+        if (typeof(req) == "object") {
+        Auth = req.cookies.Token || null;    
+    }
+    }
+    
     // try {
         
     // } catch(err) {

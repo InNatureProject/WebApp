@@ -21,3 +21,4 @@ Versões passadas: <br>
     - 1.8: Adaptação para Mobile:
         - 1.8.1: Testes
         - 1.8.2: Mudanças de funções
+        - 1.8.3: Upload para codespaces

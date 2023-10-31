@@ -51,6 +51,7 @@ const getFavoritos = (id) => {
   });
 };
 
+
 const getPlantaPreparos = (id) => {
   return new Promise((resolve, reject) => {
     pool.query(`select pr.titulo, pr.descricao as "receita", 

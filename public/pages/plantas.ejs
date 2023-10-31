@@ -26,8 +26,8 @@
             <div class="container rounded-5 bg-light" id="plantas">
                 <% for (var i = 0; i < plantas.length; i++) { %>
                     <div>
-                        <a onclick="window.location.pathname = 'planta/<%=plantas[i]['cod_plt'];%>'" class="text-decoration-none text-black">
-                        <img src=<%= plantas[i]["imagem"]; %> href=<%= "planta/" + plantas[i]["cod_plt"]; %>>
+                        <a onclick="sessionStorage.setItem('planta', <%= plantas[i]['cod_plt'] %>);window.location.pathname = 'planta/<%=plantas[i]['cod_plt'];%>'" class="text-decoration-none text-black">
+                        <img src=<%= plantas[i]["imagem"]; %> >
                         <p class="text-decoration-none"><%= plantas[i]["nome"];%></p>
                     </a>
                     </div>

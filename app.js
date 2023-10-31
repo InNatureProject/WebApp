@@ -7,12 +7,14 @@ const cookieParser = require("cookie-parser");
 
 
 // Controladores
-const Logar        = require("./functions/Usuario/Logar");
-const Logado       = require("./functions/Usuario/Logado");
-const Deslogar     = require("./functions/Usuario/Deslogar");
-const Cadastrar    = require("./functions/Usuario/Cadastrar");
-const Validar      = require("./functions/Usuario/Validar");
-const LogarM       = require("./functions/UsuarioMobile/Logar");
+const Logar         = require("./functions/Usuario/Logar");
+const Logado        = require("./functions/Usuario/Logado");
+const Deslogar      = require("./functions/Usuario/Deslogar");
+const Cadastrar     = require("./functions/Usuario/Cadastrar");
+const Validar       = require("./functions/Usuario/Validar");
+const LogarM        = require("./functions/UsuarioMobile/Logar");
+const eFavorita     = require("./functions/Usuario/EFavorita");
+const Favoritar     = require("./functions/Usuario/Favoritar");
 // App
 const app          = new express();
 
@@ -92,13 +94,21 @@ app.get("/plantas/:id", async (req, res) => {
 
 app.get("/planta/:id", async (req, res) => {
     let r1 = await parseInt(req.params.id);
+    let log1 = await Logado(req);
+    let favo = "";
+    if (await eFavorita(log1.data.id, req.params.id)) {
+        favo = "https://innatureproject.github.io/innatureimages/filled_star.png";
+    } else {
+        favo = "https://innatureproject.github.io/innatureimages/outlined_star.png";
+    }
+    
     if (isNaN(r1)) {
         res.render("error", {erro: "Valor inválido"})
     }
     else {
         let p1 = await db.getPlanta(r1);
         let pp1 = await db.getPlantaPreparos(r1);
-        res.render("planta", {planta:p1, preparos: pp1});
+        res.render("planta", {planta:p1, preparos: pp1, favo: favo});
     }
     
     
@@ -107,7 +117,9 @@ app.get("/planta/:id", async (req, res) => {
 app.get("/favoritos", async (req, res) => {
     let log1 = await Logado(req);
     if (log1.result) {
-        res.render("favoritos", {plantas: await db.getFavoritos(log1.data.id)});
+        let r1 = await db.getFavoritos(log1.data.id);
+        console.log(log1.data);
+        res.render("favoritos", {plantas: r1});
     } else {
         res.render("error", {erro: "Login deve ser realizado para favoritar plantas."});
     }
@@ -138,8 +150,10 @@ app.get("/api/users/deslogar", async (req, res) => {
     res.send(await Deslogar(res));
 })
 
-// app.get("/api/users/favoritar")
-
+app.post("/planta/api/users/favoritar", async (req, res) => {
+    console.log(req.body);
+    res.send(await Favoritar(req.body));
+})
 
 
 app.listen(port = 3000, () => {
