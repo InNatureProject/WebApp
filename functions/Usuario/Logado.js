@@ -4,17 +4,20 @@ async function Logado(req) {
     let Auth = null;
     if (typeof(req) == "string") {
         Auth = req;
-    } else { 
-        if (typeof(req) == "object") {
-        Auth = req.cookies.Token || null;    
-    }
+    } else {
+        try {
+            console.log(req)
+            if (typeof(req) == "object") {
+                Auth = req.cookies.Token || null;
+            }
+        } catch(err) {
+            return {result: false, erro: {login: "Não Existe Cookie"}}
+        }
+        
     }
     
-    // try {
-        
-    // } catch(err) {
-    //     return {result: false, erro: {login: "Não Existe Cookie"}}
-    // }
+    
+    
 
     if (typeof(Auth) == "undefined" || Auth == '' || Auth == null) {
         return {result: false, erro: {login: 'Cookie sem valor'}}

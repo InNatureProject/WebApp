@@ -140,8 +140,8 @@ app.post("/command/logar", async (req, res) => {
 })
 
 app.post("/command/cadastrar", async (req, res) => {
-    console.log(req);
-    res.send(await LogarM(req.body, res));
+    console.log(req.body);
+    res.send(await CadastrarM(req.body, res));
 })
 
 app.post("/api/users/logar", async (req, res) => {

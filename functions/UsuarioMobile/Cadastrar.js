@@ -1,6 +1,8 @@
 const Cadastro = require("../Banco/NewUser");
 const Logar = require("./Logar");
 const Validar = require("./Validar");
+const Token = require("jsonwebtoken");
+const User    = require("../Banco/User");
 
 
 const Cadastrar = async (body, res) => {
@@ -28,11 +30,25 @@ const Cadastrar = async (body, res) => {
     if (newUser.erro) {
         return {erro: 'Informações Incorretas'};
     }
+    let Find = await User.find(email, senha)
+    .then(response => {
+        return response;
+        
+    }).catch(erro => {
+        return {erro: erro};
+    })
 
-    Logar({
-        email: email,
-        senha: senha
-    }, res);
+    if (Find.length < 1 || Find.erro) {
+        return {erro: 'Informações Incorretas'};
+    }
+
+    let token = await Token.sign({
+        id: Find[0].cod_usr,
+        nome: Find[0].nome,
+        email: Find[0].email,
+    }, "Plantas2354Senha");
+
+    res.send(JSON.stringify(token));
 }
 
 module.exports = Cadastrar;
