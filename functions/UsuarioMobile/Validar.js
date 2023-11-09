@@ -1,5 +1,6 @@
 const validarEmail = async (email) => {
-    if (!(email.indexOf("@") > -1 || email.indexOf("@") == email.lastIndexOf("@"))) {
+    console.log(email);
+    if (!(email.indexOf("@") > -1 || !(email.indexOf("@") == email.lastIndexOf("@")))) {
         return false;
     }
 
@@ -11,6 +12,7 @@ const validarEmail = async (email) => {
         return false;
     }
     if (!(comp[1].indexOf(".com") > -1)) {
+        console.log('erro')
         return false;
     }
     if (!(comp[0].replace(/[a-z, 0-9, .]/g, "").length == 0)) {
