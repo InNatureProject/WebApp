@@ -116,10 +116,10 @@ app.get("/planta/:id", async (req, res) => {
 })
 
 app.get("/favoritos", async (req, res) => {
-    let log1 = await Logado(req);
+    // let log1 = await Logado(req);
     if (log1.result) {
         let r1 = await db.getFavoritos(log1.data.id);
-        console.log(log1.data);
+        // console.log(log1.data);
         res.render("favoritos", {plantas: r1});
     } else {
         res.render("error", {erro: "Login deve ser realizado para favoritar plantas."});
@@ -140,7 +140,7 @@ app.post("/command/logar", async (req, res) => {
 })
 
 app.post("/command/cadastrar", async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     res.send(await CadastrarM(req.body, res));
 })
 
@@ -157,7 +157,7 @@ app.get("/api/users/deslogar", async (req, res) => {
 })
 
 app.post("/planta/api/users/favoritar", async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     res.send(await Favoritar(req.body));
 })
 

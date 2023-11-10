@@ -10,11 +10,8 @@ const Cadastrar = async (body, res) => {
     let email = body.email;
     let senha = body.senha;
     console.log(!(Validar.validarEmail(email)), !(Validar.validarSenha(senha)))
-    if (!(await Validar.validarEmail(email)) || !(await Validar.validarSenha(senha))) {
-        // return ;
-        console.log("oi");
-        res.send({erro: "Dados Inválidos"})
-        
+    if (!(Validar.validarEmail(email) && Validar.validarSenha(senha))) {
+        return {erro: "Dados Inválidos"};
     }
 
     if (nome.replace(/[^|,\\,/,<,>,:,",',?,*]/g, "").length > 0) {

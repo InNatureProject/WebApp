@@ -12,6 +12,7 @@ const PegarFavoritas = async (cod_usr, cod_plt) => {
         .catch(erro => {
             return {erro: erro}
         } );
+        
         if (Find.length > 0) {
             return true;
         } else {

@@ -23,7 +23,7 @@ const Cadastrar = async (body, res) => {
     }).catch(erro => {
         return {erro: erro};
     });
-    console.log(newUser);
+    // console.log(newUser);
 
     if (newUser.erro) {
         return {erro: 'Informações Incorretas'};

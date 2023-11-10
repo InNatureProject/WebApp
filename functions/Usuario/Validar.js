@@ -1,5 +1,5 @@
-const validarEmail = async (email) => {
-    if (!(email.indexOf("@") > -1 || email.indexOf("@") == email.lastIndexOf("@"))) {
+const validarEmail = (email) => {
+    if (!(email.indexOf("@") > -1 || !(email.indexOf("@") == email.lastIndexOf("@")))) {
         return false;
     }
 
@@ -20,7 +20,7 @@ const validarEmail = async (email) => {
     return true;
 }
 
-const validarSenha = async (senha) =>  {
+const validarSenha = (senha) =>  {
     if (typeof(senha) != "string") {
         return false;
     }

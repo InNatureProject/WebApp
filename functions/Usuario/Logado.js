@@ -6,7 +6,7 @@ async function Logado(req) {
         Auth = req;
     } else {
         try {
-            console.log(req)
+            
             if (typeof(req) == "object") {
                 Auth = req.cookies.Token || null;
             }

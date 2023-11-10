@@ -6,7 +6,7 @@ const res        = require("express/lib/response");
 const Favoritar = async (req, res) => {
     let dados = await Logado(req.Token);
     let cod_usr = null;
-    console.log(dados);
+    // console.log(dados);
     if (dados.result) {
         cod_usr = dados.data.id;
     } else {
