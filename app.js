@@ -4,7 +4,7 @@ const cors         = require("cors");
 const bodyParser   = require("body-parser");
 const db           = require("./functions/Banco/Plantas");
 const cookieParser = require("cookie-parser");
-
+const multer       = require("multer");
 
 // Controladores
 const Logar         = require("./functions/Usuario/Logar");
@@ -16,22 +16,28 @@ const LogarM        = require("./functions/UsuarioMobile/Logar");
 const CadastrarM    = require("./functions/UsuarioMobile/Cadastrar");
 const eFavorita     = require("./functions/Usuario/EFavorita");
 const Favoritar     = require("./functions/Usuario/Favoritar");
+
 // App
 const app          = new express();
+
 
 
 const imgs = ["https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg", "https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg", "https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg"]
 
 
-
+//Configs
 app.set("view engine", "ejs");
 app.set("views", "./public/pages");
-
 app.use(cors());
 app.use(express.static(__dirname + "/public"));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: false,
+    limit: 10000,
+    parameterLimit: 3,
+}));
 app.use(bodyParser.json());
 app.use(cookieParser());
+const upload = multer({ dest: 'files/' })
 
 const indexAcess = (req, res) => {
     res.render("index", {imgs:imgs});
@@ -139,7 +145,9 @@ app.post("/command/logar", async (req, res) => {
     res.send(log);
 })
 
-app.post("/command/cadastrar", async (req, res) => {
+app.post("/command/cadastrar", upload.single('file'), async (req, res) => {
+    // console.log(req.body);
+    // console.log(Object.keys(req));
     // console.log(req.body);
     res.send(await CadastrarM(req.body, res));
 })

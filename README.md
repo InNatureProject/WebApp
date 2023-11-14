@@ -25,3 +25,4 @@ Versões passadas: <br>
         - 1.8.4: Correções de Linha no readme.md<br>
         - 1.8.5: Finalizado Logar para mobile<br>
         - 1.8.6: Finalização do Cadastro<br>
+        - 1.8.7: Recepção de Dados por Multipart/form-data<br>
