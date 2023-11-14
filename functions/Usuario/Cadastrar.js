@@ -7,7 +7,6 @@ const Cadastrar = async (body, res) => {
     let nome = body.nome;
     let email = body.email;
     let senha = body.senha;
-    // console.log([nome, email, senha])
     console.log(body);
 
     if (!(Validar.validarEmail(email) && Validar.validarSenha(senha))) {

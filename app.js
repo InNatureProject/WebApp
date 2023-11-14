@@ -140,14 +140,12 @@ app.get("/command/getAllPlantas", async (req, res) => {
     res.send(await db.getAllPlantas(50));
 })
 
-app.post("/command/logar", async (req, res) => {
+app.post("/command/logar", upload.single('file'), async (req, res) => {
     let log = await LogarM(req.body);
     res.send(log);
 })
 
 app.post("/command/cadastrar", upload.single('file'), async (req, res) => {
-    // console.log(req.body);
-    // console.log(Object.keys(req));
     // console.log(req.body);
     res.send(await CadastrarM(req.body, res));
 })
