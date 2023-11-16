@@ -6,16 +6,35 @@ document.cookie.split(";").forEach((i) => {
 	cookies[data[0]] = data[1];
 })
 
+var Token = '';
+var star = document.querySelector("img.favorito");
+
+if (cookies['Token'] == undefined) {
+  if (cookies[' Token'] == undefined) {
+    Token = "";
+  } else {
+    Token = cookies[' Token'];
+  }
+} else {
+  Token = cookies['Token'];
+}
+
 function favorite() {
   if (favoritar) {
-    axios.post('api/users/favoritar', {
-      Token: cookies["Token"],
+    axios.post(window.location.origin.concat('/api/users/favoritar'), {
+      Token: Token,
       Planta: sessionStorage.getItem("planta")
       }).then(response => { 
           if (response.data.erro) {
               return alert("response.data.erro")
           } else {
-              window.location.reload();
+            console.log(response);
+              if (response.data.info == "Favoritado") {
+                star.src = "https://innatureproject.github.io/innatureimages/filled_star.png"
+              } 
+              if (response.data.info == "Desfavoritado") {
+                star.src = "https://innatureproject.github.io/innatureimages/outlined_star.png"
+              }
           }
       }).catch(erro => {
           return alert("Erro");

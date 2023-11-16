@@ -1,6 +1,7 @@
 const pool = require("./Connection").pool;
 
 const Favoritar = (id_usr, id_plt) => {
+  console.log(`insert into usuario_planta values (${id_usr},${id_plt})`);
     return new Promise((resolve, reject) => {
         pool.query(`insert into usuario_planta values (${id_usr},${id_plt})`, [], (error, results) => {
             if (error) {

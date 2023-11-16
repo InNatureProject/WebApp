@@ -10,6 +10,7 @@ const Cadastrar = async (body, res) => {
     console.log(body);
 
     if (!(Validar.validarEmail(email) && Validar.validarSenha(senha))) {
+        console.log("oi");
         return {erro: "Dados Inválidos"};
     }
 

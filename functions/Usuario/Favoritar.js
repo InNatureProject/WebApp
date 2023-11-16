@@ -6,25 +6,23 @@ const res        = require("express/lib/response");
 const Favoritar = async (req, res) => {
     let dados = await Logado(req.Token);
     let cod_usr = null;
-    // console.log(dados);
     if (dados.result) {
         cod_usr = dados.data.id;
     } else {
         return {result: false, erro: "Não Logado/Cadastrado"};
     }
 
-    let cod_plt = req.planta;
+    let cod_plt = req.Planta;
 
     let favoBool = await EFavorita(cod_usr, cod_plt);
 
-    console.log(favoBool);
 
     if (favoBool) {
+        favoPlanta.desFavoritar(cod_usr, cod_plt);
+        return {result: true, info: "desFavoritado"};
+    } else {
         favoPlanta.Favoritar(cod_usr, cod_plt);
         return {result: true, info: "Favoritado"};
-    } else {
-        favoPlanta.desFavoritar(cod_usr, cod_plt);
-        return {result: true, info: "Desfavoritado"};
     }
     res.sendStatus(200);
 };

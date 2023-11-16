@@ -122,7 +122,7 @@ app.get("/planta/:id", async (req, res) => {
 })
 
 app.get("/favoritos", async (req, res) => {
-    // let log1 = await Logado(req);
+    let log1 = await Logado(req);
     if (log1.result) {
         let r1 = await db.getFavoritos(log1.data.id);
         // console.log(log1.data);
@@ -162,8 +162,7 @@ app.get("/api/users/deslogar", async (req, res) => {
     res.send(await Deslogar(res));
 })
 
-app.post("/planta/api/users/favoritar", async (req, res) => {
-    // console.log(req.body);
+app.post("/api/users/favoritar", async (req, res) => {
     res.send(await Favoritar(req.body));
 })
 

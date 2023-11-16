@@ -22,13 +22,13 @@ const alerta6 = document.getElementById("alerta6");
 const alerta7 = document.getElementById("alerta7");
 
 function Cadastrar(nome, email, senha) {
-    axios.post('api/users/cadastrar', {
+    axios.post('command/cadastrar', {
         nome: nome, email: email, senha: senha
         }).then(response => {
             if (response.data.erro) {
                 return alert("response.data.erro")
             } else {
-                page('usuario');
+                console.log(response)
             }
         }).catch(erro => {
             return alert("Erro");
@@ -110,7 +110,7 @@ function verificar(e) {
     }
 
 
-    if (certo) {
+    if (true) {
         Cadastrar(nome.value, email.value, senha.value);
     }
 }
