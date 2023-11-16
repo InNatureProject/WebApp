@@ -1,4 +1,8 @@
 # WebApp <br>
+O nosso projeto contém tela de cadastro, login, consegue acessar o banco de dados, já possuí validação e sanitização, assim como pedido.
+
+Link para o site no ar: innature.42web.io
+
 Versão Atual: 1.8.1 Favoritagem <br>
 Versões passadas: <br>
     - 1.1: Base <br>
@@ -26,4 +30,6 @@ Versões passadas: <br>
         - 1.8.5: Finalizado Logar para mobile<br>
         - 1.8.6: Finalização do Cadastro<br>
         - 1.8.7: Recepção de Dados por Multipart/form-data<br>
-            - 1.8.7.1: Correção do Código - criação de pasta não necessária -<br>
+            - 1.8.7.1: Correção do Código - criação de pasta não necessária<br>
+            - 1.8.7.2: Validação para o cadastro mobile corrigida<br>
+    1.9: Término do sistema de favoritos
