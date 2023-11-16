@@ -146,8 +146,9 @@ app.post("/command/logar", upload.none(), async (req, res) => {
 })
 
 app.post("/command/cadastrar", upload.array(), async (req, res) => {
-    console.log(req);
-    res.send(await CadastrarM(req.body, res));
+    let cadastro = await CadastrarM(req.body, res);
+    console.log(cadastro);
+    res.send(cadastro);
 })
 
 app.post("/api/users/logar", async (req, res) => {

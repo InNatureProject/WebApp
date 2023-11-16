@@ -51,7 +51,7 @@ const Cadastrar = async (body, res) => {
         email: Find[0].email,
     }, "Plantas2354Senha");
 
-    res.send(JSON.stringify(token));
+    return JSON.stringify(token);
 }
 
 module.exports = Cadastrar;

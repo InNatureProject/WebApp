@@ -1,7 +1,8 @@
-const validarEmail = async (email) => {
+const validarEmail = (email) => {
+    let certo = true
     console.log(email);
     if (!(email.indexOf("@") > -1 || !(email.indexOf("@") == email.lastIndexOf("@")))) {
-        return false;
+        certo = false;
     }
 
     let comp = email.split("@");
@@ -9,29 +10,30 @@ const validarEmail = async (email) => {
     if (!(v1 > 0 && v1 < 3)) {
         // console.log(comp[1].length,comp[1].replaceAll(".").length);
 
-        return false;
+        certo = false;
     }
     if (!(comp[1].indexOf(".com") > -1)) {
         console.log('erro')
-        return false;
+        certo = false;
     }
     if (!(comp[0].replace(/[a-z, 0-9, .]/g, "").length == 0)) {
-        return false;
+        certo = false;
     }
 
-    return true;
+    return certo;
 }
 
-const validarSenha = async (senha) =>  {
+const validarSenha = (senha) =>  {
+    let certo = true
     if (typeof(senha) != "string") {
-        return false;
+        certo = false;
     }
 
     if (senha.length < 6 || senha.length > 20) {
-        return false;
+        certo = false;
     }
     
-    return true;
+    return certo;
 }
 
 module.exports = {validarEmail, validarSenha};
