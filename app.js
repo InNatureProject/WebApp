@@ -31,9 +31,7 @@ app.set("views", "./public/pages");
 app.use(cors());
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({
-    extended: false,
-    limit: 10000,
-    parameterLimit: 3,
+    extended: true
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -103,12 +101,13 @@ app.get("/planta/:id", async (req, res) => {
     let r1 = await parseInt(req.params.id);
     let log1 = await Logado(req);
     let favo = "";
-    if (await eFavorita(log1.data.id, req.params.id)) {
-        favo = "https://innatureproject.github.io/innatureimages/filled_star.png";
-    } else {
-        favo = "https://innatureproject.github.io/innatureimages/outlined_star.png";
+    if (log1.result) {
+        if (await eFavorita(log1.data.id, req.params.id)) {
+            favo = "https://innatureproject.github.io/innatureimages/filled_star.png";
+        } else {
+            favo = "https://innatureproject.github.io/innatureimages/outlined_star.png";
+        }
     }
-    
     if (isNaN(r1)) {
         res.render("error", {erro: "Valor inválido"})
     }
@@ -161,6 +160,7 @@ app.post("/api/users/logar", async (req, res) => {
 })
 
 app.post("/api/users/cadastrar", async (req, res) => {
+    console.log(req);
     res.send(await Cadastrar(req.body, res));
 })
 
