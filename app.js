@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-const upload = multer({dest: '/tmp/files'});
+const upload = multer({dest: './tmp'});
 
 const indexAcess = (req, res) => {
     res.render("index", {imgs:imgs});
