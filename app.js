@@ -150,6 +150,7 @@ app.post("/command/logar", upload.none(), async (req, res) => {
 
 
 app.post("/command/cadastrar", upload.none(), async (req, res) => {
+    console.log(req)
     let cadastro = await CadastrarM(req.body, res);
     console.log(cadastro);
     res.send(cadastro);
