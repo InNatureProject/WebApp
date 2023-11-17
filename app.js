@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-const upload = multer({})
+const upload = multer({dest: 'tmp/files'});
 
 const indexAcess = (req, res) => {
     res.render("index", {imgs:imgs});
@@ -145,7 +145,8 @@ app.post("/command/logar", upload.none(), async (req, res) => {
     res.send(log);
 })
 
-app.post("/command/cadastrar", upload.array(), async (req, res) => {
+
+app.post("/command/cadastrar", upload.none(), async (req, res) => {
     let cadastro = await CadastrarM(req.body, res);
     console.log(cadastro);
     res.send(cadastro);
