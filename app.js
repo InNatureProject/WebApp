@@ -132,12 +132,16 @@ app.get("/favoritos", async (req, res) => {
     }
 })
 
-app.get("/command/getPlanta/:id", async (req, res) => {
+app.get("/command/planta/:id", async (req, res) => {
     res.send(await db.getPlanta(req.params.id));
 })
 
-app.get("/command/getAllPlantas", async (req, res) => {
+app.get("/command/plantas", async (req, res) => {
     res.send(await db.getAllPlantas(50));
+})
+
+app.get("/command/plantapreparo", async (req, res) => {
+    res.send(await db.getPlantaPreparos(req.params.id));
 })
 
 app.post("/command/logar", upload.none(), async (req, res) => {
