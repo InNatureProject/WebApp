@@ -139,7 +139,7 @@ app.get("/command/plantas", async (req, res) => {
     res.send(await db.getAllPlantas(50));
 })
 
-app.get("/command/plantapreparo", async (req, res) => {
+app.get("/command/plantapreparo/:id", async (req, res) => {
     res.send(await db.getPlantaPreparos(req.params.id));
 })
 
