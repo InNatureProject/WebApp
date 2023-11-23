@@ -76,6 +76,21 @@ app.get("/cadastro-planta", async (req, res) => {
     
 })
 
+app.get("/cadastro-preparo", async (req, res) => {
+    let log = await Logado(req);
+    if (log.result) {
+        if (log.data.permissao == 'A' || log.data.permissao == 'C') {
+            res.render('cadastro-preparo')
+        } else {
+            res.render('error', {erro: "Você não tem Permissão"})
+        }
+        
+    } else {
+        res.render('error', {erro: 'Precisa de Login e Permissão para acessar essa página'})
+    }
+    
+})
+
 app.get("/login", async (req, res) => {
     if (await Logado(req).result) {
         res.redirect("usuario");
