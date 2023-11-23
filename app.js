@@ -61,8 +61,19 @@ app.get("/cadastro-usuario", async (req, res) => {
     }
 })
 
-app.get("/cadastro-planta", (req, res) => {
-    res.render("cadastro-planta");
+app.get("/cadastro-planta", async (req, res) => {
+    let log = await Logado(req);
+    if (log.result) {
+        if (log.data.permissao == 'A' || log.data.permissao == 'C') {
+            res.render('cadastro-planta')
+        } else {
+            res.render('error', {erro: "Você não tem Permissão"})
+        }
+        
+    } else {
+        res.render('error', {erro: 'Precisa de Login e Permissão para acessar essa página'})
+    }
+    
 })
 
 app.get("/login", async (req, res) => {
@@ -76,10 +87,15 @@ app.get("/login", async (req, res) => {
 
 app.get("/usuario", async (req, res) => {
     let log1 = await Logado(req);
+    console.log(log1);
+    let data = '';
+    if (log1.data.permissao == 'A') {
+        data = 'objects/cadastro';
+    }
     if (log1.result) {
-        res.render("usuario", {nome: log1.data.nome, email: log1.data.email});
+        res.render("usuario", {nome: log1.data.nome, email: log1.data.email, data: data});
     } else {
-        res.redirect("/login")
+        res.redirect("/login");
     }
 })
 

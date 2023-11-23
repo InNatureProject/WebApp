@@ -36,6 +36,7 @@ const Logar = async (user, res) => {
         id: Find[0].cod_usr,
         nome: Find[0].nome,
         email: Find[0].email,
+        permissao: Find[0].permissao,
     }, "Plantas2354Senha");
 
     res.cookie("Token", token);

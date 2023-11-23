@@ -33,4 +33,6 @@ Versões passadas: <br>
             - 1.8.7.1: Correção do Código - criação de pasta não necessária<br>
             - 1.8.7.2: Validação para o cadastro mobile corrigida<br>
     1.9: Término do sistema de favoritos<br>
-        - 1.9.1: Sistema de Preparos Para Mobile
+        - 1.9.1: Sistema de Preparos Para Mobile<br>
+    1.10: Cadastrar Planta<br>
+        - 1.10.1: Restrições de acesso à página do cadastro planta<br>
