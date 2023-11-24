@@ -15,11 +15,11 @@ const Cadastrar = async (body, res) => {
 
 
     if (!(Validar.validarEmail(email) && Validar.validarSenha(senha))) {
-        return {erro: "Dados Inválidos"};
+        return {erro: "Dados Inválidos", result: false};
     }
 
     if (nome.replace(/[^|,\\,/,<,>,:,",',?,*]/g, "").length > 0) {
-        return {erro: "Caracteres indevidos no nome"};
+        return {erro: "Caracteres indevidos no nome", result: false};
     }
 
     let newUser = Cadastro.cadastrarUsuario(nome, email, senha)
@@ -32,7 +32,7 @@ const Cadastrar = async (body, res) => {
     console.log(newUser);
 
     if (newUser.erro) {
-        return {erro: 'Informações Incorretas'};
+        return {erro: 'Informações Incorretas', result: false};
     }
     let Find = await User.find(email, senha)
     .then(response => {
@@ -43,7 +43,7 @@ const Cadastrar = async (body, res) => {
     })
 
     if (Find.length < 1 || Find.erro) {
-        return {erro: 'Informações Incorretas'};
+        return {erro: 'Informações Incorretas', result: false};
     }
 
     let token = await Token.sign({
@@ -52,7 +52,7 @@ const Cadastrar = async (body, res) => {
         email: Find[0].email,
     }, "Plantas2354Senha");
 
-    return JSON.stringify(token);
+    return {Token: JSON.stringify(token), result: true};
 }
 
 module.exports = Cadastrar;
