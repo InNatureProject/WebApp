@@ -9,6 +9,7 @@ const Cadastrar = async (body, res) => {
     let nome = body.nome;
     let email = body.email;
     let senha = body.senha;
+    email = email.replaceAll(' ', '');
 
     console.log(body);
 

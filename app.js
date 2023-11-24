@@ -103,11 +103,12 @@ app.get("/login", async (req, res) => {
 app.get("/usuario", async (req, res) => {
     let log1 = await Logado(req);
     console.log(log1);
-    let data = '';
-    if (log1.data.permissao == 'A') {
-        data = 'objects/cadastro';
-    }
+    
     if (log1.result) {
+        let data = '';
+        if (log1.data.permissao == 'A') {
+            data = 'objects/cadastro';
+        }
         res.render("usuario", {nome: log1.data.nome, email: log1.data.email, data: data});
     } else {
         res.redirect("/login");

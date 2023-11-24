@@ -90,6 +90,16 @@ const getPlantaPreparos = (id) => {
   });
 };
 
+const getIndicacoes = () => {
+  return new Promise((resolve, reject) => {
+    pool.query(`select * from indicacao`, [], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(results.rows);
+      }
+    })
+  })
+} 
 
-
-module.exports = {getAllPlantas, getPlanta, getPlantaPreparos, searchPlanta, getFavoritos};
+module.exports = {getAllPlantas, getPlanta, getPlantaPreparos, searchPlanta, getFavoritos, getIndicacoes};
