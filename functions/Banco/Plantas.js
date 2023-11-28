@@ -1,4 +1,4 @@
-const pool = require("./Connection").pool;
+const pool = require("./Connection");
 
 const getAllPlantas = (quant) => {
   return new Promise((resolve, reject) => {

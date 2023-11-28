@@ -1,4 +1,4 @@
-const pool = require("./Connection").pool;
+const pool = require("./Connection");
 
 const Favoritar = (id_usr, id_plt) => {
   console.log(`insert into usuario_planta values (${id_usr},${id_plt})`);

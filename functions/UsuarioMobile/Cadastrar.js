@@ -22,7 +22,7 @@ const Cadastrar = async (body, res) => {
         return {erro: "Caracteres indevidos no nome", result: false};
     }
 
-    let newUser = Cadastro.cadastrarUsuario(nome, email, senha)
+    let newUser = await Cadastro.cadastrarUsuario(nome, email, senha)
     .then(response => {
         return response;
         

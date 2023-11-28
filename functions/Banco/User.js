@@ -1,4 +1,4 @@
-const pool = require("./Connection").pool;
+const pool = require("./Connection");
 const md5 = require("md5");
 
 const find = (email, senha) => {

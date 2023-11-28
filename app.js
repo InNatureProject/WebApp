@@ -188,6 +188,10 @@ app.post("/command/cadastrar", upload.none(), async (req, res) => {
     res.send(cadastro);
 })
 
+// app.post("/command/comentar", upload.none(), async (req, res) => {
+
+// })
+
 app.post("/api/users/logar", async (req, res) => {
     res.send(await Logar(req.body, res));
 })
@@ -205,6 +209,9 @@ app.post("/api/users/favoritar", async (req, res) => {
     res.send(await Favoritar(req.body));
 })
 
+app.post("/api/users/comentar", async (req, res) => {
+    res.send(await Comentar(req.body));
+})
 
 app.listen(port = 3000, () => {
     console.log("Servidor está online na porta 3000");
