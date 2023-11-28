@@ -210,7 +210,13 @@ app.post("/api/users/favoritar", async (req, res) => {
 })
 
 app.post("/api/users/comentar", async (req, res) => {
-    res.send(await Comentar(req.body));
+    let log = await Logado(req);
+    if (log.result) {
+        res.send(await Comentar(req.body, cod_usr));
+    } else {
+        res.send({error: true, data: 'Você não está logado'});
+    }
+    
 })
 
 app.listen(port = 3000, () => {

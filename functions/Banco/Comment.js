@@ -12,3 +12,5 @@ const comentar = (cod_usr, cod_plt, descricao) => {
         })
     })
 }
+
+module.exports = comentar;

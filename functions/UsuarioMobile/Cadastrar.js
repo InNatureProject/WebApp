@@ -52,7 +52,7 @@ const Cadastrar = async (body, res) => {
         email: Find[0].email,
     }, "Plantas2354Senha");
 
-    return {Token: JSON.stringify(token), result: true};
+    return {Token: token, result: true};
 }
 
 module.exports = Cadastrar;
