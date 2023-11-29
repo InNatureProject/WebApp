@@ -1,5 +1,7 @@
 <script defer>
 const favoritar = true;
+const comentario = document.getElementById("comentario");
+const comentarBotao = document.getElementById("comentar");
 var cookies = {};
 document.cookie.split(";").forEach((i) => {
   let data = i.split("=");
@@ -67,5 +69,28 @@ function fechaTodosAccordionContent() {
   })
 }
 
+
 fechaTodosAccordionContent();
+
+function Comentar(descricao, planta) {
+  axios.post(window.location.origin.concat('/api/users/comentar'), {
+    cod_plt: planta, descricao: descricao,
+  }).then(response => {
+    console.log(response);
+    if (response.data.erro) {
+      console.log(response.data.erro);
+    } else {
+      comentario.value = '';
+    }
+  }).catch(erro => {
+    console.log(erro);
+    alert('Erro');
+  })
+}
+
+comentarBotao.addEventListener('click', (e) => {
+  if (comentario.value != '') {
+    Comentar(comentario.value, sessionStorage.planta);
+  }
+})
 </script>

@@ -89,6 +89,22 @@
 
                 </div>
             </div>
+
+            <div class="container border-1 border-black d-flex flex-column">
+                <textarea name="comentario" class="mx-auto w-100 mb-0 rounded-2" id="comentario" rows="3"></textarea><br>
+                <button class="mx-auto" id='comentar'>Comentar</button>
+            </div>
+
+            <div class="container d-flex flex-column comentarios rounded-5 bg-primary mt-4 text-white">
+                <p class="fs-2">Comentarios: </p>
+                <% for (let i = 0; i < comentarios.length; i++) {%>
+                    <div class='comentario bg-secundary'>
+                        <p class='fs-5'><%= comentarios[i].descricao %></p>
+                        <p class='fs-5'>Autor: <%= comentarios[i].nome %></p>
+                    </div>
+                <% } %>
+            </div>
+
         </div>
     </main>
     

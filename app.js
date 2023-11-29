@@ -1,21 +1,23 @@
 // Importações
-const express      = require("express");
-const cors         = require("cors");
-const bodyParser   = require("body-parser");
-const db           = require("./functions/Banco/Plantas");
-const cookieParser = require("cookie-parser");
-const multer       = require("multer");
+const express           = require("express");
+const cors              = require("cors");
+const bodyParser        = require("body-parser");
+const db                = require("./functions/Banco/Plantas");
+const cookieParser      = require("cookie-parser");
+const multer            = require("multer");
 
 // Controladores
-const Logar         = require("./functions/Usuario/Logar");
-const Logado        = require("./functions/Usuario/Logado");
-const Deslogar      = require("./functions/Usuario/Deslogar");
-const Cadastrar     = require("./functions/Usuario/Cadastrar");
-const Validar       = require("./functions/Usuario/Validar");
-const LogarM        = require("./functions/UsuarioMobile/Logar");
-const CadastrarM    = require("./functions/UsuarioMobile/Cadastrar");
-const eFavorita     = require("./functions/Usuario/EFavorita");
-const Favoritar     = require("./functions/Usuario/Favoritar");
+const Logar             = require("./functions/Usuario/Logar");
+const Logado            = require("./functions/Usuario/Logado");
+const Deslogar          = require("./functions/Usuario/Deslogar");
+const Cadastrar         = require("./functions/Usuario/Cadastrar");
+const Validar           = require("./functions/Usuario/Validar");
+const LogarM            = require("./functions/UsuarioMobile/Logar");
+const CadastrarM        = require("./functions/UsuarioMobile/Cadastrar");
+const eFavorita         = require("./functions/Usuario/EFavorita");
+const Favoritar         = require("./functions/Usuario/Favoritar");
+const Comentar          = require("./functions/Usuario/Comentar");
+const LerComentarios    = require("./functions/Banco/Comment").lerComentarios;
 
 // App
 const app          = new express();
@@ -130,23 +132,25 @@ app.get("/plantas/:id", async (req, res) => {
 })
 
 app.get("/planta/:id", async (req, res) => {
-    let r1 = await parseInt(req.params.id);
-    let log1 = await Logado(req);
+    let r = await parseInt(req.params.id);
+    let log = await Logado(req);
     let favo = "";
-    if (log1.result) {
-        if (await eFavorita(log1.data.id, req.params.id)) {
+    if (log.result) {
+        if (await eFavorita(log.data.id, req.params.id)) {
             favo = "https://innatureproject.github.io/innatureimages/filled_star.png";
         } else {
             favo = "https://innatureproject.github.io/innatureimages/outlined_star.png";
         }
     }
-    if (isNaN(r1)) {
+    if (isNaN(r)) {
         res.render("error", {erro: "Valor inválido"})
     }
     else {
-        let p1 = await db.getPlanta(r1);
-        let pp1 = await db.getPlantaPreparos(r1);
-        res.render("planta", {planta:p1, preparos: pp1, favo: favo});
+        let p = await db.getPlanta(r);
+        let pp = await db.getPlantaPreparos(r);
+        let cm = await LerComentarios(r);
+        console.log(cm);
+        res.render("planta", {planta:p, preparos: pp, favo: favo, comentarios: cm});
     }
     
     
@@ -212,7 +216,7 @@ app.post("/api/users/favoritar", async (req, res) => {
 app.post("/api/users/comentar", async (req, res) => {
     let log = await Logado(req);
     if (log.result) {
-        res.send(await Comentar(req.body, cod_usr));
+        res.send(await Comentar(req.body, log.data.id));
     } else {
         res.send({error: true, data: 'Você não está logado'});
     }
