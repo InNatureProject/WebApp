@@ -23,3 +23,11 @@ form.form textarea{
     margin-left:5%;
     border-radius: 20px;
     }
+
+    #pesquisa-contraindicacao {
+        position: absolute !important;
+        align-self: center !important;
+        
+
+        z-index: 1;
+    }

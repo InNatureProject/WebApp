@@ -102,4 +102,25 @@ const getIndicacoes = () => {
   })
 } 
 
-module.exports = {getAllPlantas, getPlanta, getPlantaPreparos, searchPlanta, getFavoritos, getIndicacoes};
+const getPropriedades = () => {
+  return new Promise((resolve, reject) => {
+    pool.query(`select (select array_agg(ind.descricao) as indicacao from indicacao ind), (select array_agg(ind.descricao) as contraindicacao from contraindicacao ind), (select array_agg(ind.descricao) as efeito_colateral
+    from contraindicacao ind)`, [], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        console.log(results.rows);
+        resolve(results.rows[0]);
+      }
+    })
+  })
+}
+
+module.exports = {getAllPlantas,
+  getPlanta,
+  getPlantaPreparos,
+  searchPlanta,
+  getFavoritos,
+  getIndicacoes,
+  getPropriedades
+};

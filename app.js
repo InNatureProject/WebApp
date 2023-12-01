@@ -67,7 +67,7 @@ app.get("/cadastro-planta", async (req, res) => {
     let log = await Logado(req);
     if (log.result) {
         if (log.data.permissao == 'A' || log.data.permissao == 'C') {
-            res.render('cadastro-planta')
+            res.render('cadastro-planta', {propriedades: await db.getPropriedades()})
         } else {
             res.render('error', {erro: "Você não tem Permissão"})
         }
