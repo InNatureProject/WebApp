@@ -6,8 +6,19 @@ const telas = {
     efeitocolateral: document.querySelector('#pesquisa-efeito-colateral'),
 }
 
+const itens = document.querySelectorAll('.itens');
+
+itens.forEach((e) => {
+    e.addEventListener('click', (event) => {
+        if (e.getAttribute('v') == 'true') {
+            e.setAttribute('v', 'false')
+        } else {
+            e.setAttribute('v', 'true');
+        }
+    })
+})
+
 function hide_show(tela) {
-    console.log(telas[tela].classList);
     let r = telas[tela].classList.contains('hide');
     if (r) {
         telas[tela].classList.remove('hide');

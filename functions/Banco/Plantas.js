@@ -104,8 +104,7 @@ const getIndicacoes = () => {
 
 const getPropriedades = () => {
   return new Promise((resolve, reject) => {
-    pool.query(`select (select array_agg(ind.descricao) as indicacao from indicacao ind), (select array_agg(ind.descricao) as contraindicacao from contraindicacao ind), (select array_agg(ind.descricao) as efeito_colateral
-    from contraindicacao ind)`, [], (error, results) => {
+    pool.query(`select (select array_agg(ind.descricao) as indicacao from indicacao ind), (select array_agg(ind.cod_inc) as indicacaoN from indicacao ind), (select array_agg(ind.descricao) as contraindicacao from contraindicacao ind), (select array_agg(ind.cod_cinc) as contraindicacaoN from contraindicacao ind), (select array_agg(ind.descricao) as efeito_colateral from efeito_colateral ind), (select array_agg(ind.cod_eftcol) as efeito_colateralN from efeito_colateral ind)`, [], (error, results) => {
       if (error) {
         reject(error);
       } else {
