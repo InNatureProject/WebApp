@@ -17,6 +17,7 @@ const CadastrarM        = require("./functions/UsuarioMobile/Cadastrar");
 const eFavorita         = require("./functions/Usuario/EFavorita");
 const Favoritar         = require("./functions/Usuario/Favoritar");
 const Comentar          = require("./functions/Usuario/Comentar");
+const { desFavoritar } = require("./functions/Banco/FavoPlanta");
 const LerComentarios    = require("./functions/Banco/Comment").lerComentarios;
 
 // App
@@ -191,6 +192,26 @@ app.post("/command/cadastrar", upload.none(), async (req, res) => {
     console.log(cadastro);
     res.send(cadastro);
 })
+
+app.post("/command/favoritos", async (req, res) => {
+    let log = Logado(req.body);
+    if (log.result) {
+        res.send({result: true, data: await db.getFavoritos((await log).data.id)});
+    } else {
+        res.send({result: false, erro: "login não finalizado")
+    }
+})
+
+
+app.post("/command/favoritar", async (req, res) => {
+    res.send(await Favoritar(req.body));
+})
+
+app.post("/command/favoritar", async (req, res) => {
+    res.send(await desFavoritarFavoritar(req.body));
+})
+
+
 
 // app.post("/command/comentar", upload.none(), async (req, res) => {
 
