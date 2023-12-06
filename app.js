@@ -17,9 +17,9 @@ const CadastrarM        = require("./functions/UsuarioMobile/Cadastrar");
 const eFavorita         = require("./functions/Usuario/EFavorita");
 const Favoritar         = require("./functions/Usuario/Favoritar");
 const Comentar          = require("./functions/Usuario/Comentar");
-const { desFavoritar } = require("./functions/Banco/FavoPlanta");
+const { desFavoritar }  = require("./functions/Banco/FavoPlanta");
 const LerComentarios    = require("./functions/Banco/Comment").lerComentarios;
-
+const UsuarioImagens    = require("./functions/Usuario/Imagem");
 // App
 const app          = new express();
 
@@ -194,14 +194,32 @@ app.post("/command/cadastrar", upload.none(), async (req, res) => {
 })
 
 app.post("/command/favoritos", async (req, res) => {
-    let log = Logado(req.body);
+    let log = await Logado(req.body);
     if (log.result) {
-        res.send({result: true, data: await db.getFavoritos((await log).data.id)});
+        res.send({result: true, data: await db.getFavoritos(log.data.id)});
     } else {
-        res.send({result: false, erro: "login não finalizado")
+        res.send({result: false, erro: "login não finalizado"})
     }
 })
 
+
+app.post("/command/getImagem", async (req, res) => {
+    let log = await Logado(req.body);
+    if (log.result) {
+        res.send({result: true, data: await UsuarioImagens.getImagem(log.data.id)});
+    } else {
+        res.send({result: false, erro: "login não finalizado"})
+    }
+})
+
+app.post("/command/setImagem", async (req, res) => {
+    let log = await Logado(req.body);
+    if (log.result) {
+        res.send({result: true, data: await UsuarioImagens.setImagem(log.data.id, req.body.url)});
+    } else {
+        res.send({result: false, erro: "login não finalizado"})
+    }
+})
 
 app.post("/command/favoritar", async (req, res) => {
     res.send(await Favoritar(req.body));
