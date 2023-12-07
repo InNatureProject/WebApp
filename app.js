@@ -225,11 +225,15 @@ app.post("/command/favoritar", async (req, res) => {
     res.send(await Favoritar(req.body));
 })
 
-app.post("/command/favoritar", async (req, res) => {
-    res.send(await desFavoritarFavoritar(req.body));
+app.post("/command/ehFavorito", async (req, res) => {
+    let log = await Logado(req);
+    if (log.result) {
+        res.send(await eFavorita(req.body));
+    } else {
+        res.send({result: false});
+    }
+    
 })
-
-
 
 // app.post("/command/comentar", upload.none(), async (req, res) => {
 
