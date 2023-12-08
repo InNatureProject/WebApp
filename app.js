@@ -194,7 +194,8 @@ app.post("/command/cadastrar", upload.none(), async (req, res) => {
 })
 
 app.post("/command/favoritos", async (req, res) => {
-    let log = await Logado(req.body);
+    let log = await Logado(req.body.Token);
+    console.log(body);
     if (log.result) {
         res.send({result: true, data: await db.getFavoritos(log.data.id)});
     } else {
@@ -204,7 +205,7 @@ app.post("/command/favoritos", async (req, res) => {
 
 
 app.post("/command/getImagem", async (req, res) => {
-    let log = await Logado(req.body);
+    let log = await Logado(req.body.Token);
     if (log.result) {
         res.send({result: true, data: await UsuarioImagens.getImagem(log.data.id)});
     } else {
@@ -213,7 +214,7 @@ app.post("/command/getImagem", async (req, res) => {
 })
 
 app.post("/command/setImagem", async (req, res) => {
-    let log = await Logado(req.body);
+    let log = await Logado(req.body.Token);
     if (log.result) {
         res.send({result: true, data: await UsuarioImagens.setImagem(log.data.id, req.body.url)});
     } else {
@@ -226,7 +227,7 @@ app.post("/command/favoritar", async (req, res) => {
 })
 
 app.post("/command/ehFavorito", async (req, res) => {
-    let log = await Logado(req);
+    let log = await Logado(req.body.Token);
     if (log.result) {
         res.send(await eFavorita(req.body));
     } else {

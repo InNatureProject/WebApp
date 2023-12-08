@@ -37,3 +37,5 @@ Versões passadas: <br>
     1.10: Cadastrar Planta<br>
         - 1.10.1: Restrições de acesso à página do cadastro planta<br>
         - 1.10.2: Cadastro Preparo Iniciado<br>
+    1.11: Mais Adaptações Mobile<br>
+        - 1.11.5: Erros de Favoritos Consertados<br>
