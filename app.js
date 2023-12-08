@@ -195,7 +195,6 @@ app.post("/command/cadastrar", upload.none(), async (req, res) => {
 
 app.post("/command/favoritos", async (req, res) => {
     let log = await Logado(req.body.Token);
-    console.log(body);
     if (log.result) {
         res.send({result: true, data: await db.getFavoritos(log.data.id)});
     } else {
