@@ -228,7 +228,7 @@ app.post("/command/favoritar", async (req, res) => {
 app.post("/command/ehFavorito", async (req, res) => {
     let log = await Logado(req.body.Token);
     if (log.result) {
-        res.send(await eFavorita(req.body));
+        res.send({result: await eFavorita(req.body)});
     } else {
         res.send({result: false});
     }
