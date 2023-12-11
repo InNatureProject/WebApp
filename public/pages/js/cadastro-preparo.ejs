@@ -4,7 +4,6 @@
         contraindicacao: document.querySelector('#pesquisa-contraindicacao'),
         indicacao: document.querySelector('#pesquisa-indicacao'),
         efeitocolateral: document.querySelector('#pesquisa-efeito-colateral'),
-        planta: document.querySelector('#pesquisa-planta'),
     }
     
     const itens = document.querySelectorAll('.itens');
@@ -29,15 +28,35 @@
     }
 
     function pesquisa_planta() {
-        let pesq = prompt("Qual planta?");
+        let pesq = prompt("Pesquise pela planta (nome comum, não precisa escrever o nome completo)");
         let plantas_pesq = axios.get(window.location.origin.concat(`/command/searchPlanta/${pesq}`))
-        .then(response => return(response.data));
-        console.log(plantas_pesq)
-        let texto = `Qual Planta?\nNúmero | Nome`;
-        plantas_pesq.forEach((e) => {
+        .then(response => {
+            let codes = [[], []];
+            let texto = `Escreva o número da planta\nNúmero | Nome`;
+            response.data.data.forEach((e) => {
             texto = texto.concat(`\n${e['cod_plt']} | ${e['nome']}`);
+            codes[0].push(e['cod_plt']);
+            codes[1].push(e['nome']);
         });
         let pesq2 = prompt(texto);
+        // console.log(pesq2, codes, codes.indexOf(pesq2))
+        try {
+            pesq2 = parseInt(pesq2);
+            console.log(pesq2, codes, codes[0].indexOf(pesq2))
+            if (codes[0].indexOf(pesq2) > -1) {
+            alert('Planta Selecionada');
+            planta = pesq2;
+            document.getElementById('cd_planta').textContent = `Planta: ${codes[1][codes[0].indexOf(pesq2)]}`
+        } else {
+            alert('Planta não existe');
+        }
+        } catch {
+            alert('Informação Inválida')
+        }
+        
+        
+        });
+        
     }
 
     function dados() {
@@ -78,6 +97,7 @@
         console.log(indicacoes);
         console.log(contraindicacoes);
         console.log(efeito_colateral);
+        console.log(planta);
     }
 
     </script>

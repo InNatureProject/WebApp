@@ -32,7 +32,7 @@
                         <label class="form-label" for="cd_nome">Título</label>
                         <input type="text" class="form-control" name="cd_nome" id="cd_titulo" required>
                         <label class="form-label" for="cd_descricao">Descrição</label>
-                        <input type="text" class="form-control" name="cd_descricao" id="cd_descricao" required>
+                        <textarea type="text" class="form-control" name="cd_descricao" id="cd_descricao" row="10" required></textarea>
                         
     
 
@@ -59,6 +59,8 @@
                         <input type="button" onclick="javascript: hide_show('indicacao')" value="Indicação">
                         <input type="button" onclick="javascript: hide_show('contraindicacao')" value="Contra Indicação">
                         <input type="button" onclick="javascript: hide_show('efeitocolateral')" value="Efeito Colateral">
+                        <input type="button" onclick="javascript: pesquisa_planta()" value="Planta">
+                        <p id="cd_planta" class="fs-6 mx-3 mt-1">Planta: </p>
                         
             </form>
             <input class="form-submit"  type="submit" id="submit" value="Cadastrar" onclick="javascript: dados()"><br>
@@ -85,9 +87,6 @@
         <% } %>
     </div>
 
-    <div id="pesquisa-planta" class="bg-info pesquisa-ice hide">
-        <p onclick="javascript: hide_show('planta')" class="x_button">X</p>
-    </div>
 
     <%- include("objects/footer"); %>
     <script defer>

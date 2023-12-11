@@ -41,3 +41,5 @@ Versões passadas: <br>
         - 1.11.5: Erros de Favoritos Consertados<br>
         - 1.11.6: Erro do setImagem corrigido<br>
         - 1.11.7: Login Mobile Complementado com nome e imagem<br>
+    1.12: Cadastro de Plantas e Preparos<br>
+        - 1.12.1: Base do Site para Cadastros Pronta<br>
