@@ -24,7 +24,8 @@ function Logar(email, senha) {
             if (response.data.erro) {
                 return alert("response.data.erro")
             } else {
-                page('usuario');
+                console.log(response.data)
+                //page('usuario');
             }
         }).catch(erro => {
             return alert("Erro");

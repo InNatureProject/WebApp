@@ -1,8 +1,9 @@
 // const { response } = require("express");
-const User    = require("../Banco/User");
-const Token   = require("jsonwebtoken");
-const res     = require("express/lib/response");
-const Validar = require("./Validar");
+const User      = require("../Banco/User");
+const Token     = require("jsonwebtoken");
+const res       = require("express/lib/response");
+const Validar   = require("./Validar");
+const Imagem    = require("./Imagem");
 
 const Logar = async (user, res) => {
     let email = user.email;
@@ -41,6 +42,9 @@ const Logar = async (user, res) => {
 
     res.cookie("Token", token);
     // res.redirect("usuario");
-    res.sendStatus(200);
+    let imagem = await Imagem.getImagem(Find[0].cod_usr);
+    console.log(imagem);
+    res.send(imagem);
 }
+
 module.exports = Logar;

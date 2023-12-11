@@ -20,6 +20,7 @@ const Comentar          = require("./functions/Usuario/Comentar");
 const { desFavoritar }  = require("./functions/Banco/FavoPlanta");
 const LerComentarios    = require("./functions/Banco/Comment").lerComentarios;
 const UsuarioImagens    = require("./functions/Usuario/Imagem");
+const { lerComentarios } = require("./functions/Banco/Comment");
 // App
 const app          = new express();
 
@@ -212,6 +213,10 @@ app.post("/command/getImagem", async (req, res) => {
     }
 })
 
+app.post("/command/getImagem/:id", async (req, res) => {
+        res.send({result: true, data: await UsuarioImagens.getImagem(req.params.id)});
+})
+
 app.post("/command/setImagem", async (req, res) => {
     let log = await Logado(req.body.Token);
     if (log.result) {
@@ -233,6 +238,10 @@ app.post("/command/ehFavorito", async (req, res) => {
         res.send({result: false});
     }
     
+})
+
+app.get("/command/getComentarios/:id", async (req, res) => {
+    res.send(await lerComentarios(req.params.id));
 })
 
 // app.post("/command/comentar", upload.none(), async (req, res) => {
@@ -271,7 +280,7 @@ app.post("/api/users/setImagem", async (req, res) => {
     if (log.result) {
         res.send({result: true, data: await UsuarioImagens.setImagem(log.data.id, req.body.url)});
     } else {
-        res.send({result: false, erro: "login não finalizado"})
+        res.send({result: false, erro: "login não finalizado"});
     }
 })
 
