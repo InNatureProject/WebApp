@@ -45,7 +45,7 @@ const Logar = async (user) => {
         if (token == '') {
             reject("erro");
         } else {
-            resolve(token);
+            resolve({Token: token, Nome: Find[0].nome, Imagem: Find[0].imagem);
         }
     })
     

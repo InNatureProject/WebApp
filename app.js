@@ -106,7 +106,6 @@ app.get("/login", async (req, res) => {
 
 app.get("/usuario", async (req, res) => {
     let log1 = await Logado(req);
-    console.log(log1);
     
     if (log1.result) {
         let data = '';
@@ -121,7 +120,6 @@ app.get("/usuario", async (req, res) => {
 
 app.get("/plantas", async (req, res) => {
     let j = await db.getAllPlantas(50);
-    // console.log(j);
     res.render("plantas", {plantas: j});
 })
 
@@ -151,7 +149,6 @@ app.get("/planta/:id", async (req, res) => {
         let p = await db.getPlanta(r);
         let pp = await db.getPlantaPreparos(r);
         let cm = await LerComentarios(r);
-        console.log(cm);
         res.render("planta", {planta:p, preparos: pp, favo: favo, comentarios: cm});
     }
     
@@ -162,7 +159,6 @@ app.get("/favoritos", async (req, res) => {
     let log1 = await Logado(req);
     if (log1.result) {
         let r1 = await db.getFavoritos(log1.data.id);
-        // console.log(log1.data);
         res.render("favoritos", {plantas: r1});
     } else {
         res.render("error", {erro: "Login deve ser realizado para favoritar plantas."});
@@ -183,14 +179,12 @@ app.get("/command/plantapreparo/:id", async (req, res) => {
 
 app.post("/command/logar", upload.none(), async (req, res) => {
     let log = await LogarM(req.body);
-    res.send({result: true, data: log});
+    res.send({result: true, data: {log}});
 })
 
 
 app.post("/command/cadastrar", upload.none(), async (req, res) => {
-    console.log(req)
     let cadastro = await CadastrarM(req.body, res);
-    console.log(cadastro);
     res.send(cadastro);
 })
 
@@ -244,16 +238,23 @@ app.get("/command/getComentarios/:id", async (req, res) => {
     res.send(await lerComentarios(req.params.id));
 })
 
-// app.post("/command/comentar", upload.none(), async (req, res) => {
+app.post("/command/comentar", async (req, res) => {
+    let log = await Logado(req.body.Token);
+    if (log.result) {
+        res.send({result: true, data: await Comentar(req.body, log.data.id)});
+    } else {
+        res.send({result: false, data: 'Você não está logado'});
+    }
+    
+})
 
-// })
+
 
 app.post("/api/users/logar", async (req, res) => {
     res.send(await Logar(req.body, res));
 })
 
 app.post("/api/users/cadastrar", async (req, res) => {
-    console.log(req);
     res.send(await Cadastrar(req.body, res));
 })
 

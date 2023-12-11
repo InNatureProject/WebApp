@@ -48,7 +48,7 @@
             </a>
             
             <a onclick="page('usuario')" class="navbar-brand" alt="Foto de Perfil" id="usuario">
-                <img id="fotoPerfil" src="https://innatureproject.github.io/innatureimages/foto_padrao.png"  class="img-fluid rounded-circle">
+                <img id="fotoPerfil" src="https://innatureproject.github.io/innatureimages/foto_padrao.png"  class="img-fluid rounded-circle" style="width: 2.5em; height: 2.5em; object-fit: fill;">
             </a>
         </div>
         <!-- Fim do Ícone Favorito e Foto de Perfil -->
@@ -159,7 +159,12 @@
     </script>
     <script>
         if (document.cookie.indexOf("Token=") > -1) {
-            document.getElementById("fotoPerfil").src = "https://innatureproject.github.io/innatureimages/foto_padrao-verde.png"
+            if (sessionStorage.imagem == "undefined") {
+                document.getElementById("fotoPerfil").src = "https://innatureproject.github.io/innatureimages/foto_padrao-verde.png"
+            } else {
+                document.getElementById("fotoPerfil").src = sessionStorage.imagem;
+            }
+            
         } else {
             document.getElementById("fotoPerfil").src = "https://innatureproject.github.io/innatureimages/foto_padrao.png"
         }

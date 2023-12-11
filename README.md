@@ -40,3 +40,4 @@ Versões passadas: <br>
     1.11: Mais Adaptações Mobile<br>
         - 1.11.5: Erros de Favoritos Consertados<br>
         - 1.11.6: Erro do setImagem corrigido<br>
+        - 1.11.7: Login Mobile Complementado com nome e imagem<br>
