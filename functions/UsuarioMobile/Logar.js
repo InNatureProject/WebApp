@@ -37,7 +37,7 @@ const Logar = async (user) => {
         nome: Find[0].nome,
         email: Find[0].email,
     }, "Plantas2354Senha");
-    console.log(token);
+    console.log(Find[0]);
     // res.json(JSON.stringify({"data": token}));
     // res.redirect("usuario");
     // res.sendStatus(200);
