@@ -183,7 +183,7 @@ app.get("/command/plantapreparo/:id", async (req, res) => {
 
 app.post("/command/logar", upload.none(), async (req, res) => {
     let log = await LogarM(req.body);
-    res.send(log);
+    res.send({result: true, data: log});
 })
 
 

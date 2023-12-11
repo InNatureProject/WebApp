@@ -21,12 +21,14 @@ botao.addEventListener("click", () => {
 
 function trocarImagem() {
   let url = prompt('Link de uma imagem')
-  axios.post("command/setImagem", {
+  console.log(url);
+  axios.post("api/users/setImagem", {
     url: url
   }).then(response => {
     if (response.data.error) {
       alert('Erro')
     } else {
+      sessionStorage.imagem = url;
       alert('Trocado')
     }
   })
