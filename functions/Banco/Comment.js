@@ -15,7 +15,7 @@ const comentar = (cod_usr, cod_plt, descricao) => {
 
 const lerComentarios = (cod_plt) => {
     return new Promise((resolve, reject) => {
-        pool.query(`select us.nome, cm.descricao from COMENTARIO cm
+        pool.query(`select cm.cod_cmt, us.nome, cm.descricao from COMENTARIO cm
         inner join USUARIO us
         on cm.FK_USUARIO_cod_usr = us.cod_usr
         where cm.FK_PLANTA_cod_plt = ${cod_plt};`, [], (error, results) => {
