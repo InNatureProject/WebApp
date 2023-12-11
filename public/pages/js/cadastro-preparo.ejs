@@ -1,0 +1,83 @@
+<script defer>
+    var planta = 0;
+    const telas = {
+        contraindicacao: document.querySelector('#pesquisa-contraindicacao'),
+        indicacao: document.querySelector('#pesquisa-indicacao'),
+        efeitocolateral: document.querySelector('#pesquisa-efeito-colateral'),
+        planta: document.querySelector('#pesquisa-planta'),
+    }
+    
+    const itens = document.querySelectorAll('.itens');
+    
+    itens.forEach((e) => {
+        e.addEventListener('click', (event) => {
+            if (e.getAttribute('e') == 'true') {
+                e.setAttribute('e', 'false')
+            } else {
+                e.setAttribute('e', 'true');
+            }
+        })
+    })
+    
+    function hide_show(tela) {
+        let r = telas[tela].classList.contains('hide');
+        if (r) {
+            telas[tela].classList.remove('hide');
+        } else {
+            telas[tela].classList.add('hide');
+        }
+    }
+
+    function pesquisa_planta() {
+        let pesq = prompt("Qual planta?");
+        let plantas_pesq = axios.get(window.location.origin.concat(`/command/searchPlanta/${pesq}`))
+        .then(response => return(response.data));
+        console.log(plantas_pesq)
+        let texto = `Qual Planta?\nNúmero | Nome`;
+        plantas_pesq.forEach((e) => {
+            texto = texto.concat(`\n${e['cod_plt']} | ${e['nome']}`);
+        });
+        let pesq2 = prompt(texto);
+    }
+
+    function dados() {
+        let titulo = document.getElementById("cd_titulo").value;
+        let descricao = document.getElementById("cd_descricao").value;
+
+        let tipo = 1;
+
+        let tipos = document.querySelectorAll(".tipo_preparo");
+        let tipo_a = true;
+        tipos.forEach((e) => {
+            if (!(e.checked) && tipo_a) {
+                tipo += 1
+            } else {
+                tipo_a = false;
+            }
+        })
+
+        let indicacoes = [];
+        let contraindicacoes = [];
+        let efeito_colateral = [];
+
+        document.querySelectorAll('#pesquisa-indicacao input[e="true"]').forEach((e) => {
+            indicacoes.push(e.getAttribute('v'))
+        });
+        
+        document.querySelectorAll('#pesquisa-contraindicacao input[e="true"]').forEach((e) => {
+            contraindicacoes.push(e.getAttribute('v'))
+        });
+
+        document.querySelectorAll('#pesquisa-efeito-colateral input[e="true"]').forEach((e) => {
+            efeito_colateral.push(e.getAttribute('v'))
+        });
+
+        console.log(titulo);
+        console.log(descricao);
+        console.log(tipo);
+        console.log(indicacoes);
+        console.log(contraindicacoes);
+        console.log(efeito_colateral);
+    }
+
+    </script>

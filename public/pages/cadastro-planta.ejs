@@ -15,7 +15,7 @@
     <!-- <script src="js/geralJs.js" defer></script> -->
     <!-- <script src="/js/cadastro-planta.js" defer></script> -->
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Novas informações</title>
 </head>
 <body>
@@ -32,11 +32,15 @@
     
                         <label class="form-label" for="cd_nome">Nome</label>
                         <input type="text" class="form-control" name="cd_nome" id="cd_nome" required>
-                        <div class = "alert" id = "alerta1">O campo não pode estar vazio!</div>
-                        <div class = "alert" id = "alerta5">Favor inserir apenas letras e espaços!!</div>
+
+                        <label class="form-label" for="cd_nome_cientifico">Nome Científico</label>
+                        <input type="text" class="form-control" name="cd_nome_cientifico" id="cd_nome_cientifico" required>
+
+                        <label class="form-label" for="cd_imagem">Imagem</label>
+                        <input type="text" class="form-control" name="cd_imagem" id="cd_imagem" required>
 
                         <label class="form-label" for="cd_descricao">Descrição</label>
-                        <input type="text" class="form-control" name="cd_descricao" id="cd_descricao" row="
+                        <textarea type="text" class="form-control" name="cd_descricao" id="cd_descricao" row="10"></textarea>
 
 
                         <label for=""></label>
@@ -45,7 +49,7 @@
                         
             
             </form>
-            <input class="form-submit"  type="submit" id="submit" value="Próximo"><br>
+            <input class="form-submit"  type="submit" id="submit" value="Cadastrar"><br>
 
         </div>
         </div>

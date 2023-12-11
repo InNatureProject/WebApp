@@ -24,7 +24,7 @@ function Logar(email, senha) {
             if (response.data.erro) {
                 return alert("response.data.erro")
             } else {
-                sessionStorage.imagem = response.data[0].imagem;
+                localStorage.imagem = response.data[0].imagem;
                 page('usuario');
             }
         }).catch(erro => {

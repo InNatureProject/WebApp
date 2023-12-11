@@ -95,15 +95,16 @@
                 <button class="mx-auto" id='comentar'>Comentar</button>
             </div>
 
-            <div class="container d-flex flex-column comentarios rounded-5 bg-primary mt-4 text-white">
+            <div class="container d-flex flex-column comentarios rounded-5 mt-4 text-white" style="background-color: #8abf9e;">
                 <p class="fs-2">Comentarios: </p>
                 <% for (let i = 0; i < comentarios.length; i++) {%>
-                    <div class='comentario bg-secundary'>
-                        <p class='fs-5'><%= comentarios[i].descricao %></p>
-                        <div>
-                            <img src="<%= comentarios[i] %>" alt="">
-                            <p class='fs-5'>Autor: <%= comentarios[i].nome %></p>
+                    <div class='comentario bg-secundary m-2 rounded-2 p-2' style="background-color: #93c2a5;">
+                        
+                        <div class="">
+                            
+                            <div class='fs-5'><img class="img-fluid rounded-circle me-2" style="width: 1.5em; height: 1.5em; object-fit: fill;"src="<%= comentarios[i].imagem %>" alt=""><%= comentarios[i].nome %></div>
                         </div>
+                        <p class='fs-5'><%= comentarios[i].descricao %></p>
                     </div>
                 <% } %>
             </div>

@@ -28,7 +28,7 @@ function trocarImagem() {
     if (response.data.error) {
       alert('Erro')
     } else {
-      sessionStorage.imagem = url;
+      localStorage.imagem = url;
       alert('Trocado')
     }
   })

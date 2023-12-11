@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-const upload = multer({});
+
 
 const indexAcess = (req, res) => {
     res.render("index", {imgs:imgs});
@@ -69,7 +69,7 @@ app.get("/cadastro-planta", async (req, res) => {
     let log = await Logado(req);
     if (log.result) {
         if (log.data.permissao == 'A' || log.data.permissao == 'C') {
-            res.render('cadastro-planta', {propriedades: await db.getPropriedades()})
+            res.render('cadastro-planta')
         } else {
             res.render('error', {erro: "Você não tem Permissão"})
         }
@@ -84,7 +84,7 @@ app.get("/cadastro-preparo", async (req, res) => {
     let log = await Logado(req);
     if (log.result) {
         if (log.data.permissao == 'A' || log.data.permissao == 'C') {
-            res.render('cadastro-preparo')
+            res.render('cadastro-preparo', {propriedades: await db.getPropriedades()})
         } else {
             res.render('error', {erro: "Você não tem Permissão"})
         }
@@ -108,9 +108,9 @@ app.get("/usuario", async (req, res) => {
     let log1 = await Logado(req);
     
     if (log1.result) {
-        let data = '';
-        if (log1.data.permissao == 'A') {
-            data = 'objects/cadastro';
+        let data = ['a', 'a'];
+        if (log1.data.permissao == 'A' || log1.data.permissao == 'C') {
+            data = ['objects/cadastro', 'objects/preparo'];
         }
         res.render("usuario", {nome: log1.data.nome, email: log1.data.email, data: data});
     } else {
@@ -169,6 +169,14 @@ app.get("/command/planta/:id", async (req, res) => {
     res.send(await db.getPlanta(req.params.id));
 })
 
+app.get("/command/searchPlanta/:id", async (req, res) => {
+    let r3 = req.params.id.replace("&", " "); // criar validação para tira caracteres especiais utilizando replace
+    r3 = r3.replace(/[`"`,`'`,"/","(",")",";","*","$","&","@","#","%","[","]","{","}",`,`,"£","¢","*","!",":","|"]/g,"");//aqui está a validação
+    let j = await db.searchPlanta(r3);
+
+    res.send({result: true, data: j});
+})
+
 app.get("/command/plantas", async (req, res) => {
     res.send(await db.getAllPlantas(50));
 })
@@ -177,13 +185,13 @@ app.get("/command/plantapreparo/:id", async (req, res) => {
     res.send(await db.getPlantaPreparos(req.params.id));
 })
 
-app.post("/command/logar", upload.none(), async (req, res) => {
+app.post("/command/logar", async (req, res) => {
     let log = await LogarM(req.body);
-    res.send({result: true, data: {log}});
+    res.send({result: true, data: log});
 })
 
 
-app.post("/command/cadastrar", upload.none(), async (req, res) => {
+app.post("/command/cadastrar", async (req, res) => {
     let cadastro = await CadastrarM(req.body, res);
     res.send(cadastro);
 })
@@ -207,7 +215,7 @@ app.post("/command/getImagem", async (req, res) => {
     }
 })
 
-app.post("/command/getImagem/:id", async (req, res) => {
+app.get("/command/getImagem/:id", async (req, res) => {
         res.send({result: true, data: await UsuarioImagens.getImagem(req.params.id)});
 })
 
