@@ -6,16 +6,32 @@ var email = document.querySelector(".email");
 const botao = document.getElementById("desconectar");
 
 if (typeof(Storage) !== "undefined") {
-    let tnome = localStorage.getItem("nome");
-    nome.innerHTML = tnome.toString();
-    let temail = localStorage.getItem("email");
-    email.innerHTML = temail.toString();
-  } else {
-   alert("Não é possível logar neste navegador");
-  }
+  let tnome = localStorage.getItem("nome");
+  nome.innerHTML = tnome.toString();
+  let temail = localStorage.getItem("email");
+  email.innerHTML = temail.toString();
+} else {
+  alert("Não é possível logar neste navegador");
+}
 
-  botao.addEventListener("click", () => {
-    localStorage.setItem("logado", "0");
-    window.location.replace("index.html");
+botao.addEventListener("click", () => {
+  localStorage.setItem("logado", "0");
+  window.location.replace("index");
+})
+
+function trocarImagem() {
+  let url = prompt('Link de uma imagem')
+  axios.post("command/setImagem", {
+    url: url
+  }).then(response => {
+    if (response.data.error) {
+      alert('Erro')
+    } else {
+      alert('Trocado')
+    }
   })
+
+}
+
+
 </script>

@@ -266,6 +266,15 @@ app.post("/api/users/comentar", async (req, res) => {
     
 })
 
+app.post("/api/users/setImagem", async (req, res) => {
+    let log = await Logado(req.cookies.Token);
+    if (log.result) {
+        res.send({result: true, data: await UsuarioImagens.setImagem(log.data.id, req.body.url)});
+    } else {
+        res.send({result: false, erro: "login não finalizado"})
+    }
+})
+
 app.listen(port = 3000, () => {
     console.log("Servidor está online na porta 3000");
     

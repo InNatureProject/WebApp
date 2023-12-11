@@ -1,4 +1,4 @@
-const pool = require("../Banco/Connection").pool;
+const pool = require("../Banco/Connection");
 
 const setImagem = async (id, url) => {
     return new Promise((resolve, reject) => {

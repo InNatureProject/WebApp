@@ -79,7 +79,24 @@
         </div>
         </div>
     </main>
-
+    <div id="pesquisa-indicacao" class="bg-info pesquisa-ice hide rounded-2">
+        <p onclick="javascript: hide_show('indicacao')" class="x_button">X</p>
+        <% for (let i = 0; i < propriedades.indicacao.length; i++)  {%>
+            <input class="itens" type="button" value="<%= propriedades.indicacao[i] %>" v="<%= propriedades.indicacaon[i] %>" e="false">
+        <% } %>
+    </div>
+    <div id="pesquisa-contraindicacao" class="bg-info pesquisa-ice hide">
+        <p onclick="javascript: hide_show('contraindicacao')" class="x_button">X</p>
+        <% for (let i = 0; i < propriedades.contraindicacao.length; i++)  {%>
+            <input class="itens" type="button" value="<%= propriedades.contraindicacao[i] %>" v="<%= propriedades.contraindicacaon[i] %>" e="false">
+        <% } %>
+    </div>
+    <div id="pesquisa-efeito-colateral" class="bg-info pesquisa-ice hide">
+        <p onclick="javascript: hide_show('efeitocolateral')" class="x_button">X</p>
+        <% for (let i = 0; i < propriedades.efeito_colateral.length; i++)  {%>
+            <input class="itens" type="button" value="<%= propriedades.efeito_colateral[i] %>" v="<%= propriedades.efeito_colateraln[i] %>" e="false">
+        <% } %>
+    </div>
     <%- include("objects/footer"); %>
     <script defer>
         const pesq = document.getElementById("pesq");
