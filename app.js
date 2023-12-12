@@ -22,6 +22,8 @@ const LerComentarios    = require("./functions/Banco/Comment").lerComentarios;
 const UsuarioImagens    = require("./functions/Usuario/Imagem");
 const lerComentarios    = require("./functions/Banco/Comment");
 const newPlanta         = require("./functions/Banco/NewPlanta");
+const trocarNome        = require("./functions/Usuario/TrocarNome");
+const { body } = require("express-validator");
 // App
 const app          = new express();
 
@@ -192,6 +194,9 @@ app.post("/command/logar", async (req, res) => {
     res.send({result: true, data: log});
 })
 
+app.post("/command/trocarNome", async (req, res) => {
+    res.send(await trocarNome(req.body));
+}) 
 
 app.post("/command/cadastrar", async (req, res) => {
     let cadastro = await CadastrarM(req.body, res);
@@ -313,6 +318,18 @@ app.post("/api/users/setImagem", async (req, res) => {
     }
 })
 
+app.post("/api/users/trocarNome", async (req, res) => {
+    req.body.Token = req.cookies.Token;
+    let troca = await trocarNome(req.body);
+    if (troca.result) {
+        res.cookie("Token", troca.data);
+        res.send({result: true, data: "Foi"})
+    } else {
+        res.send({result: false, data: "Não foi possível trocar"})
+    }
+    
+})
+
 app.post("/api/planta/cadastrarPlanta", async (req, res) => {
     let log = await Logado(req.cookies.Token);
     if (log.result) {
@@ -338,6 +355,8 @@ app.post("/api/planta/cadastrarPreparo", async (req, res) => {
         res.send({result: false, data: "Não é permitido fazer essa execução sem um login"})
     }
 })
+
+
 
 app.listen(port = 3000, () => {
     console.log("Servidor está online na porta 3000");

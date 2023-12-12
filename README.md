@@ -44,4 +44,5 @@ Versões passadas: <br>
     1.12: Cadastro de Plantas e Preparos<br>
         - 1.12.1: Base do Site para Cadastros Pronta<br>
         - 1.12.2: Finalizado Cadastros<br>
-    1.13: Cadastr
+    1.13: Troca de Nome
+        - 1.13.1: Terminado para Mobile

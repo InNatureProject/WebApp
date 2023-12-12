@@ -36,5 +36,22 @@ function trocarImagem() {
 
 }
 
+function trocarNome() {
+  let nome = prompt('Fale um novo nome')
+  axios.post("api/users/trocarNome", {
+    nome: nome
+  }).then(response => {
+    console.log(response);
+    if (response.data.result) {
+
+      alert("Nome Trocado")
+    } else {
+      alert(response.data.data);
+      
+    }
+  })
+
+}
+
 
 </script>

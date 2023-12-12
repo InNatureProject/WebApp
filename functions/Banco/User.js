@@ -14,6 +14,29 @@ const find = (email, senha) => {
     });
   };
 
+const trocarNome = (id, nome) => {
+  return new Promise((resolve, reject) => {
+    pool.query(`update table usuario set nome = '${nome}' where cod_usr = ${id}`, [], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(results);
+      }
+    })
+  })
+}
 
+const find1 = (id) => {
+  return new Promise((resolve, reject) => {
+    pool.query(`select * from usuario
+    where cod_usr = ${id}`, [], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(results.rows);
+      }
+    });
+  });
+};
 
-module.exports = {find}
+module.exports = {find, trocarNome, find1}
