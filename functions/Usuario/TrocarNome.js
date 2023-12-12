@@ -1,5 +1,6 @@
 const User = require("../Banco/User");
 const Logado = require("./Logado");
+const Token     = require("jsonwebtoken");
 
 const trocarNome = async (body) => {
     

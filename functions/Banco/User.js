@@ -16,7 +16,7 @@ const find = (email, senha) => {
 
 const trocarNome = (id, nome) => {
   return new Promise((resolve, reject) => {
-    pool.query(`update table usuario set nome = '${nome}' where cod_usr = ${id}`, [], (error, results) => {
+    pool.query(`update usuario set nome = '${nome}' where cod_usr = ${id}`, [], (error, results) => {
       if (error) {
         reject(error);
       } else {
