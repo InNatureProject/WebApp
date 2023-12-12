@@ -98,6 +98,16 @@
         console.log(contraindicacoes);
         console.log(efeito_colateral);
         console.log(planta);
+
+        axios.post("api/planta/cadastrarPreparo", {
+            titulo: titulo,
+            descricao, descricao,
+            tipo_preparo: tipo,
+            indicacoes: indicacoes,
+            contraindicacoes: contraindicacoes,
+            efeitos_colaterais: efeito_colateral,
+            planta: planta,
+        }).then(response => console.log(response))
     }
 
     </script>

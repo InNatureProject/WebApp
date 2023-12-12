@@ -1,5 +1,7 @@
 <script defer>
 
+
+
 const telas = {
     contraindicacao: document.querySelector('#pesquisa-contraindicacao'),
     indicacao: document.querySelector('#pesquisa-indicacao'),
@@ -18,12 +20,20 @@ itens.forEach((e) => {
     })
 })
 
-function hide_show(tela) {
-    let r = telas[tela].classList.contains('hide');
-    if (r) {
-        telas[tela].classList.remove('hide');
-    } else {
-        telas[tela].classList.add('hide');
-    }
+function dados() {
+    let nome = document.getElementById("cd_nome").value;
+    let nome_cientifico = document.getElementById("cd_nome_cientifico").value;
+    let descricao = document.getElementById("cd_descricao").value;
+    let imagem = document.getElementById("cd_imagem").value;
+
+    axios.post("api/planta/cadastrarPlanta", {
+        nome: nome, nome_cientifico: nome_cientifico, descricao: descricao, imagem: imagem
+    }).then(response => {
+        if (response.data.erro) {
+                alert("Erro")
+            } else {
+                alert("Planta Cadastrada");
+            }
+    })
 }
 </script>

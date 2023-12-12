@@ -8,6 +8,7 @@ const cadastrarUsuario = (nome, email, senha) => {
             if (error) {
                 reject(error);
             } else {
+                console.log(results);
                 resolve(results);
             }
         }

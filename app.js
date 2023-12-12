@@ -20,7 +20,8 @@ const Comentar          = require("./functions/Usuario/Comentar");
 const { desFavoritar }  = require("./functions/Banco/FavoPlanta");
 const LerComentarios    = require("./functions/Banco/Comment").lerComentarios;
 const UsuarioImagens    = require("./functions/Usuario/Imagem");
-const { lerComentarios } = require("./functions/Banco/Comment");
+const lerComentarios    = require("./functions/Banco/Comment");
+const newPlanta         = require("./functions/Banco/NewPlanta");
 // App
 const app          = new express();
 
@@ -108,7 +109,7 @@ app.get("/usuario", async (req, res) => {
     let log1 = await Logado(req);
     
     if (log1.result) {
-        let data = ['a', 'a'];
+        let data = ['objects/a', 'objects/a'];
         if (log1.data.permissao == 'A' || log1.data.permissao == 'C') {
             data = ['objects/cadastro', 'objects/preparo'];
         }
@@ -181,6 +182,7 @@ app.get("/command/plantas", async (req, res) => {
     res.send(await db.getAllPlantas(50));
 })
 
+
 app.get("/command/plantapreparo/:id", async (req, res) => {
     res.send(await db.getPlantaPreparos(req.params.id));
 })
@@ -222,9 +224,18 @@ app.get("/command/getImagem/:id", async (req, res) => {
 app.post("/command/setImagem", async (req, res) => {
     let log = await Logado(req.body.Token);
     if (log.result) {
-        res.send({result: true, data: await UsuarioImagens.setImagem(log.data.id, req.body.url)});
+        if (req.body.url != undefined && req.body.url != null && req.body.url != '') {
+            if (req.body.url.length <= 300) {
+                res.send({result: true, data: await UsuarioImagens.setImagem(log.data.id, req.body.url)});
+            } else {
+                res.send({result: false, data: 'Acima do Limite Permitido'});
+            }
+        } else {
+            res.send({result: false, data: "Valores indefinidos ou vazio"})
+        }
+        
     } else {
-        res.send({result: false, erro: "login não finalizado"})
+        res.send({result: false, data: "Login não finalizado"})
     }
 })
 
@@ -287,9 +298,44 @@ app.post("/api/users/comentar", async (req, res) => {
 app.post("/api/users/setImagem", async (req, res) => {
     let log = await Logado(req.cookies.Token);
     if (log.result) {
-        res.send({result: true, data: await UsuarioImagens.setImagem(log.data.id, req.body.url)});
+        if (req.body.url != undefined && req.body.url != null && req.body.url != '') {
+            if (req.body.url.length <= 300) {
+                res.send({result: true, data: await UsuarioImagens.setImagem(log.data.id, req.body.url)});
+            } else {
+                res.send({result: false, data: 'Acima do Limite Permitido'});
+            }
+        } else {
+            res.send({result: false, data: "Valores indefinidos ou vazio"})
+        }
+        
     } else {
-        res.send({result: false, erro: "login não finalizado"});
+        res.send({result: false, data: "Login não finalizado"})
+    }
+})
+
+app.post("/api/planta/cadastrarPlanta", async (req, res) => {
+    let log = await Logado(req.cookies.Token);
+    if (log.result) {
+        if (log.data.permissao == "A" || log.data.permissao == "C") {
+            res.send({result: true, data: await newPlanta.newPlanta(req.body)});
+        } else {
+            res.send({result: false, data: "Você não tem permissão para isso"})
+        }
+    } else {
+        res.send({result: false, data: "Não é permitido fazer essa execução sem um login"})
+    }
+})
+
+app.post("/api/planta/cadastrarPreparo", async (req, res) => {
+    let log = await Logado(req.cookies.Token);
+    if (log.result) {
+        if (log.data.permissao == "A" || log.data.permissao == "C") {
+            res.send({result: true, data: await newPlanta.newPreparo(req.body)});
+        } else {
+            res.send({result: false, data: "Você não tem permissão para isso"})
+        }
+    } else {
+        res.send({result: false, data: "Não é permitido fazer essa execução sem um login"})
     }
 })
 

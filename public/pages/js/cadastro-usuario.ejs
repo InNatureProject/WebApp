@@ -28,7 +28,8 @@ function Cadastrar(nome, email, senha) {
             if (response.data.erro) {
                 return alert("response.data.erro")
             } else {
-                console.log(response)
+                console.log(response);
+                page('');
             }
         }).catch(erro => {
             return alert("Erro");

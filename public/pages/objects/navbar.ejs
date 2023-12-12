@@ -159,7 +159,7 @@
     </script>
     <script>
         if (document.cookie.indexOf("Token=") > -1) {
-            if (sessionStorage.imagem == "undefined") {
+            if (localStorage.imagem == undefined || localStorage.imagem == 'null') {
                 document.getElementById("fotoPerfil").src = "https://innatureproject.github.io/innatureimages/foto_padrao-verde.png"
             } else {
                 document.getElementById("fotoPerfil").src = localStorage.imagem;

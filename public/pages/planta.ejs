@@ -34,13 +34,15 @@
                     </div>
                     <div class="col-5 container-fluid d-flex">
                         <p class="fs-1 my-auto mx-auto" id="nome"><%= planta[0]["nome"] %></p>
+                        <p class="fs-2 my-auto mx-auto" id="nome_cientifico"><%= planta[0]["nome_cientifico"] %></p>
                     </div>
                 </div>
+                <div class="row descricao m-4 fs-5"><%= planta[0]['descricao'] %></div>
                 <div class="row preparos">
                     
                     <% for (var i = 0; i < preparos.length; i++) { 
                         let indicacoes = "";
-                        indicacoes = "Indicacoes:  " + preparos[i]["indicacao"][0];
+                        indicacoes = "Indicacões:  " + preparos[i]["indicacao"][0];
                         for (let j = 1; j < preparos[i]["indicacao"].length-1; j++) {
                             indicacoes = indicacoes.concat(", " + preparos[i]["indicacao"][j]);
                         }
@@ -50,7 +52,7 @@
 
                         
                         let contraindicacoes = "";
-                        contraindicacoes = "Contraindicacoes:  " + preparos[i]["contraindicacao"][0];
+                        contraindicacoes = "Contra indicacões:  " + preparos[i]["contraindicacao"][0];
                         for (let j = 1; j < preparos[i]["contraindicacao"].length-1; j++) {
                             contraindicacoes = contraindicacoes.concat(", " + preparos[i]["contraindicacao"][j]);
                         }

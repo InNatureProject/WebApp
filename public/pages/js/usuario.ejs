@@ -20,16 +20,17 @@ botao.addEventListener("click", () => {
 })
 
 function trocarImagem() {
-  let url = prompt('Link de uma imagem')
+  let url = prompt('Link de uma imagem (max: 300 caracteres)')
   console.log(url);
   axios.post("api/users/setImagem", {
     url: url
   }).then(response => {
-    if (response.data.error) {
-      alert('Erro')
-    } else {
+    if (response.data.result) {
       localStorage.imagem = url;
       alert('Trocado')
+    } else {
+      alert(response.data.data);
+      
     }
   })
 
