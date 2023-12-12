@@ -47,3 +47,4 @@ Versões passadas: <br>
     1.13: Troca de Nome
         - 1.13.1: Terminado para Mobile
         - 1.13.2: Terminado para Web
+        - 1.13.3: Correção de Comentários Mobile

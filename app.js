@@ -259,13 +259,13 @@ app.post("/command/ehFavorito", async (req, res) => {
 })
 
 app.get("/command/getComentarios/:id", async (req, res) => {
-    res.send(await lerComentarios(req.params.id));
+    res.send(await lerComentarios.lerComentarios(req.params.id));
 })
 
 app.post("/command/comentar", async (req, res) => {
     let log = await Logado(req.body.Token);
     if (log.result) {
-        res.send({result: true, data: await Comentar(req.body, log.data.id)});
+        res.send({result: true, data: await lerComentarios.comentar(req.body, log.data.id)});
     } else {
         res.send({result: false, data: 'Você não está logado'});
     }
