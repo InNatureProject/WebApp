@@ -1,7 +1,7 @@
 # WebApp <br>
 O nosso projeto contém tela de cadastro, login, consegue acessar o banco de dados, já possuí validação e sanitização, assim como pedido.
 
-Link para o site no ar: innature.42web.io
+Link para o site no ar: innature.42web.io (Fora do Ar)
 
 Versão Atual: 1.8.1 Favoritagem <br>
 Versões passadas: <br>
